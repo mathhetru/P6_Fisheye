@@ -1,0 +1,21 @@
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+}
+
+.header {
+    &_link{
+        margin-left: 100px;
+    }
+    &-logo{ 
+        height: 50px;
+    }
+    &-title{
+        margin-right: 100px;
+        font-weight: $w-medium;
+    }
+}
+

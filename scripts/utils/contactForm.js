@@ -8,9 +8,9 @@
 //     modal.style.display = "none";
 // }
 
-const modalContact = document.getElementById("contact_modal");
-const modalBtn = document.querySelector(".contact_button");
-const closeBtn = document.querySelector(".close_button");
+const modalContact = document.getElementById("contact-modal");
+const modalBtn = document.querySelector(".contact-button");
+const closeBtn = document.querySelector(".close-button");
 
 modalBtn.addEventListener("click", function () {
 	modalContact.style.display = "block";

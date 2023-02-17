@@ -10,7 +10,7 @@ async function getAllData() {
 // Function affiche tous les photograhes
 async function displayPhotographers(data) {
     // DOM Element - div contenant tous les articles
-    const photographersSection = document.querySelector(".photographer_section");
+    const photographersSection = document.querySelector(".photographer-section");
 
     // Pour chaque photographe
     data.photographers.forEach((photographer) => {

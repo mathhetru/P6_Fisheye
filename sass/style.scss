@@ -1,0 +1,25 @@
+@import "./utils/variables";
+@import "./utils/mixins";
+@import "./components/btn";
+@import "./layout/banner";
+@import "./layout/main-index";
+@import "./layout/header-photographer";
+@import "./layout/gallery";
+@import "./layout/lightbox";
+@import "./layout/form";
+@import "./layout/price";
+
+
+// MAIN ELEMENTS
+* {
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+* a {
+    text-decoration: none;
+}
+body{
+    color: $red;
+    max-width: 1440px;
+    margin: auto;
+}
