@@ -5,7 +5,7 @@ async function getAllData() {
     return fetch(requestURL)
     .then(response => response.json())
     .catch(error => alert("Erreur : " + error));
-}
+} 
 
 // Function affiche tous les photograhes
 async function displayPhotographers(data) {
@@ -15,7 +15,7 @@ async function displayPhotographers(data) {
     // Pour chaque photographe
     data.photographers.forEach((photographer) => {
         const photographerCard = photographerFactory(photographer);
-        const articlePanel = photographerCard.articlePanelDOM(photographerCard.name, photographerCard.picture);
+        const articlePanel = photographerCard.articlePanelDOM(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture);
         photographersSection.appendChild(articlePanel);
     });
 };
@@ -25,4 +25,4 @@ async function init() {
     displayPhotographers(photographers);
 };
 
-init();
+init(); 
