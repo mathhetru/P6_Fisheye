@@ -1,6 +1,6 @@
 // import { photographerFactory } from "../factories/photographer.js";
     
-async function getOneData() {
+async function getData() {
     const requestURL = "http://localhost:5500/data/photographers.json"
     return fetch(requestURL)
     .then(response => response.json())
@@ -8,21 +8,29 @@ async function getOneData() {
 } 
 
 // Function affiche tous les photograhes
-async function displayPhotographers(data) {
-    // DOM Element - div contenant tous les articles
-    const photographersSection = document.querySelector(".photographer-section");
+async function displayOnePhotographer(data) {
+    const string = window.location.href;
+    const url = new URL(string);
+    const id = url.searchParams.get("id");
 
-    // Pour chaque photographe
+    // // DOM Element - div contenant tous les articles
+    // const photographersSection = document.querySelector(".photographer-section");
+
     data.photographers.forEach((photographer) => {
-        const photographerCard = photographerFactory(photographer);
-        const articlePanel = photographerCard.articlePanelDOM(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture);
-        photographersSection.appendChild(articlePanel);
+        if (id == photographer.id) {
+            console.log(photographer.name)
+        }
+        // const photographerCard = photographerFactory(photographer);
+        // const articlePanel = photographerCard.articlePanelDOM(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture);
+        // photographersSection.appendChild(articlePanel);
     });
+
+    // console.log(id, data);
 };
 
 async function init() {
-    const photographers = await getOneData();
-    displayPhotographers(photographers);
+    const photographers = await getData();
+    displayOnePhotographer(photographers);
 };
 
 init(); 

@@ -1,6 +1,6 @@
 import { photographerFactory } from "../factories/photographer.js";
     
-async function getAllData() {
+async function getData() {
     const requestURL = "http://localhost:5500/data/photographers.json"
     return fetch(requestURL)
     .then(response => response.json())
@@ -8,7 +8,7 @@ async function getAllData() {
 } 
 
 // Function affiche tous les photograhes
-async function displayPhotographers(data) {
+async function displayIndexPhotographers(data) {
     // DOM Element - div contenant tous les articles
     const photographersSection = document.querySelector(".photographer-section");
 
@@ -21,8 +21,8 @@ async function displayPhotographers(data) {
 };
 
 async function init() {
-    const photographers = await getAllData();
-    displayPhotographers(photographers);
+    const photographers = await getData();
+    displayIndexPhotographers(photographers);
 };
 
 init(); 
