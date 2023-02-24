@@ -1,7 +1,39 @@
 .photograph-header {
     background-color: #FAFAFA;
-    height: 300px;
+    height: 313px;
+    max-width: 1240px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 70px;
+    &-infos{
+        width: 30%;
+        &__title{
+            color: $orange;
+            font-weight: $w-medium;
+            font-size: 64px;
+            margin: 0 0 15px 0;
+        }
+        &__city{
+            font-size: 24px;
+            margin: 0;
+        }
+        &__tag{
+            font-size: 15px;
+            color: $black;
+            margin: 15px 0;
+        }
+    }
+    &__img{
+        display: block;
+        height: 200px;
+        width: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        overflow-clip-margin: unset;
+        box-shadow: $shadow;
+    }
 }
 
 .contact-button {

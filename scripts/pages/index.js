@@ -15,8 +15,8 @@ async function displayIndexPhotographers(data) {
     // Pour chaque photographe
     data.photographers.forEach((photographer) => {
         const photographerCard = photographerFactory(photographer);
-        const articlePanel = photographerCard.articlePanelDOM(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture);
-        photographersSection.appendChild(articlePanel);
+        const indexArticlePanel = photographerCard.indexArticleDOM(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture);
+        photographersSection.appendChild(indexArticlePanel);
     });
 };
 

@@ -8,6 +8,7 @@
     border: none;
     background-color: $red;
     border-radius: 5px;
+    cursor: pointer;
     &:hover, &:focus{
         color: $black;
         background-color: $orange;

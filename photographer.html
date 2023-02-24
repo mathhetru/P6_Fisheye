@@ -9,18 +9,18 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header id="header">
+    <header id="header" aria-label="header de la page">
       <a href="index.html" class="header_link"><img src="assets/images/logo.png" class="header-logo"/></a>
     </header>
     <main id="main">
-      <div class="photograph-header">
-        <button class="contact-button">Contactez-moi</button>
+      <header aria-label="header du contenu photographe" class="photograph-header">
+        <!-- <button class="contact-button">Contactez-moi</button> -->
         <!-- <button class="contact_button js-contact_button" onclick="displayModal()">Contactez-moi</button> -->
-      </div>
+      </header>
     </main>
-    <div id="contact-modal">
+    <section id="contact-modal">
 			<div class="modal">
-				<header>
+				<header aria-label="header du formulaire">
           <h2>Contactez-moi</h2>
           <img class="close-button" src="assets/icons/close.svg"/>
           <!-- <img src="assets/icons/close.svg" onclick="closeModal()" /> -->
@@ -32,9 +32,8 @@
 					</div>
           <button class="send-button">Envoyer</button>
 				</form>
-			</div>
+			</section>
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>

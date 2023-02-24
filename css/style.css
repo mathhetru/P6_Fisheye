@@ -71,8 +71,40 @@
 
 .photograph-header {
   background-color: #FAFAFA;
-  height: 300px;
+  height: 313px;
+  max-width: 1240px;
   margin: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 70px;
+}
+.photograph-header-infos {
+  width: 30%;
+}
+.photograph-header-infos__title {
+  color: #D3573C;
+  font-weight: 500;
+  font-size: 64px;
+  margin: 0 0 15px 0;
+}
+.photograph-header-infos__city {
+  font-size: 24px;
+  margin: 0;
+}
+.photograph-header-infos__tag {
+  font-size: 15px;
+  color: #000000;
+  margin: 15px 0;
+}
+.photograph-header__img {
+  display: block;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow-clip-margin: unset;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .contact-button {
@@ -85,6 +117,7 @@
   border: none;
   background-color: #901C1C;
   border-radius: 5px;
+  cursor: pointer;
 }
 .contact-button:hover, .contact-button:focus {
   color: #000000;
@@ -160,6 +193,7 @@ form input {
   border: none;
   background-color: #901C1C;
   border-radius: 5px;
+  cursor: pointer;
 }
 .send-button:hover, .send-button:focus {
   color: #000000;
