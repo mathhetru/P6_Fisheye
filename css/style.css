@@ -1,12 +1,11 @@
-#header {
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 120px;
 }
-
-.header_link {
+.header__link {
   margin-left: 100px;
 }
 .header-logo {
@@ -52,18 +51,18 @@
   margin: 30px 0 10px 0;
 }
 .card-info-city {
-  font-size: 13px;
+  font-size: 20px;
   margin: 0;
   text-align: center;
 }
 .card-info-tag {
-  font-size: 10px;
+  font-size: 12px;
   color: #000000;
   margin: 5px 0;
   text-align: center;
 }
 .card-info-price {
-  font-size: 9px;
+  font-size: 12px;
   margin: 0;
   color: #525252;
   text-align: center;
@@ -85,15 +84,15 @@
 .photograph-header-infos__title {
   color: #D3573C;
   font-weight: 500;
-  font-size: 64px;
+  font-size: 55px;
   margin: 0 0 15px 0;
 }
 .photograph-header-infos__city {
-  font-size: 24px;
+  font-size: 20px;
   margin: 0;
 }
 .photograph-header-infos__tag {
-  font-size: 15px;
+  font-size: 12px;
   color: #000000;
   margin: 15px 0;
 }
@@ -212,6 +211,9 @@ form input {
 
 body {
   color: #901C1C;
+}
+
+.screen-size {
   max-width: 1440px;
   margin: auto;
 }

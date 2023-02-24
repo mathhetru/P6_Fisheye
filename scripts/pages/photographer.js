@@ -1,11 +1,6 @@
 import { photographerFactory } from "../factories/photographer.js";
-    
-async function getData() {
-    const requestURL = "http://localhost:5500/data/photographers.json"
-    return fetch(requestURL)
-    .then(response => response.json())
-    .catch(error => alert("Erreur : " + error));
-} 
+import { getData } from "../factories/data.js";
+import { modalContact } from "../utils/contactForm.js";
 
 // Function affiche tous les photograhes
 async function displayOnePhotographer(data) {
@@ -15,17 +10,18 @@ async function displayOnePhotographer(data) {
 
     // DOM Element - header des pages photographes uniques
     const PhotographerMain = document.getElementById("main");
-    console.log(data.photographers);
 
-    data.photographers.forEach((photographer) => {
-        if (id == photographer.id) {
-            const photographerCard = photographerFactory(photographer)
-            // console.log(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture )
+    // Find() le photographe dans le tableau des photographes
+    const AllPhotographersData = data.photographers;
+    const singlePhotographerData = AllPhotographersData.find(element => AllPhotographersData.id = id);
+    // console.log(singlePhotographerData); 
 
-            const SinglePhotographe = photographerCard.singlePhotographeDOM(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture);
-            PhotographerMain.appendChild(SinglePhotographe);
-        }
-    });
+    
+    const photographerCard = photographerFactory(singlePhotographerData);
+    const singlePhotographe = photographerCard.singlePhotographeDOM(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture);
+    PhotographerMain.appendChild(singlePhotographe);
+
+    modalContact();
 };
 
 async function init() {
