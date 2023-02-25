@@ -1,7 +1,16 @@
 export function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
   const picture = `img/photographers_ID/${portrait}`;
-  return { name, id, city, country, tagline, price, picture, indexArticleDOM, singlePhotographeDOM };
+  return { name, id, city, country, tagline, price, picture, indexArticleDOM, singlePhotographDOM };
+}
+
+export function galeryFactory(data) {
+  const { date, id, likes, photographeId, price, title } = data;
+  console.log(name);
+  // const folderName = name.split(' ').replace("-", " ");
+  //split le name ? et garder le premier element ? Ca ne marchera pas pour Ellie Rose...
+  // const picture = `img/${folderName}/${image}`;
+  return { date, id, likes, photographeId, price, title, galeryPhotographDOM };
 }
 
 function indexArticleDOM(name, id, city, country, tagline, price, picture) {
@@ -46,7 +55,7 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
   return article;
 }
 
-function singlePhotographeDOM(name, id, city, country, tagline, price, picture) {
+function singlePhotographDOM(name, id, city, country, tagline, price, picture) {
   const photographersHeader = document.querySelector(".photograph-header");
 
   const divInformations = document.createElement("div");
@@ -81,3 +90,17 @@ function singlePhotographeDOM(name, id, city, country, tagline, price, picture) 
   return photographersHeader;
 }
 
+function galeryPhotographDOM(date, id, likes, picture, photographeId, price, title) {
+  const photographGalery = document.querySelector(".photograph-galery");
+
+  const h2 = document.createElement("h2");
+  h2.className = 'photograph-galery__title';
+  h2.textContent = title;
+  
+  // const img = document.createElement("img");
+  // img.className = 'photograph-galry__img';
+  // img.setAttribute("src", picture);
+  // img.setAttribute('alt', title);
+
+  photographGalery.appendChild(h2);
+}
