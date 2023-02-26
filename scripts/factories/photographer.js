@@ -4,13 +4,10 @@ export function photographerFactory(data) {
   return { name, id, city, country, tagline, price, picture, indexArticleDOM, singlePhotographDOM };
 }
 
-export function galeryFactory(data) {
+export function galeryFactory(data, firstName, media) {
   const { date, id, likes, photographeId, price, title } = data;
-  console.log(name);
-  // const folderName = name.split(' ').replace("-", " ");
-  //split le name ? et garder le premier element ? Ca ne marchera pas pour Ellie Rose...
-  // const picture = `img/${folderName}/${image}`;
-  return { date, id, likes, photographeId, price, title, galeryPhotographDOM };
+  let mediaPath = `img/${firstName}/${media}`;
+  return { date, id, likes, mediaPath, photographeId, price, title, galeryPhotographDOM };
 }
 
 function indexArticleDOM(name, id, city, country, tagline, price, picture) {
@@ -43,7 +40,7 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
   pTag.textContent = tagline;
   const pPrice = document.createElement("p");
   pPrice.className = 'card-info-price';
-  pPrice.textContent = price + "€/jour";  
+  pPrice.textContent = price + "€/jour";
 
   article.appendChild(link);
   article.appendChild(divInformations);
@@ -90,17 +87,30 @@ function singlePhotographDOM(name, id, city, country, tagline, price, picture) {
   return photographersHeader;
 }
 
-function galeryPhotographDOM(date, id, likes, picture, photographeId, price, title) {
+function galeryPhotographDOM(date, id, likes, mediaPath, photographeId, price, title) {
   const photographGalery = document.querySelector(".photograph-galery");
 
   const h2 = document.createElement("h2");
   h2.className = 'photograph-galery__title';
   h2.textContent = title;
-  
-  // const img = document.createElement("img");
-  // img.className = 'photograph-galry__img';
-  // img.setAttribute("src", picture);
-  // img.setAttribute('alt', title);
+
+  let extension = mediaPath.substring(mediaPath.length - 3, mediaPath.length);
+  switch (extension) {
+    case "jpg":
+      const img = document.createElement("img");
+      img.className = 'photograph-galery__media';
+      img.setAttribute("src", mediaPath);
+      img.setAttribute('alt', title);
+      photographGalery.appendChild(img);
+      break;
+    case "mp4":
+      const video = document.createElement("video");
+      video.className = 'photograph-galery__media';
+      video.setAttribute("src", mediaPath);
+      video.setAttribute('alt', title);
+      photographGalery.appendChild(video);
+      break;
+  }
 
   photographGalery.appendChild(h2);
 }

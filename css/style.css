@@ -184,6 +184,12 @@
   transform: rotate(180deg);
 }
 
+.photograph-galery {
+  max-width: 1240px;
+  margin: 60px 100px;
+  display: grid;
+}
+
 #contact-modal {
   display: none;
 }

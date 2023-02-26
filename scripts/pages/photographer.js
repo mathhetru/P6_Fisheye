@@ -1,4 +1,7 @@
-import { galeryFactory, photographerFactory } from "../factories/photographer.js";
+import {
+    galeryFactory,
+    photographerFactory,
+} from "../factories/photographer.js";
 import { getData } from "../factories/data.js";
 import { modalContact } from "../utils/contactForm.js";
 
@@ -13,12 +16,22 @@ async function displayOnePhotographer(data) {
 
     // Find() le photographe dans le tableau des photographes
     const AllPhotographersData = data.photographers;
-    const singlePhotographerData = AllPhotographersData.find(element => element.id == id);
-    
+    const singlePhotographerData = AllPhotographersData.find(
+        (element) => element.id == id
+    );
+
     // Pour ce photographe, afficher ses élements sur sa page
     const photographerCard = photographerFactory(singlePhotographerData);
-    const singlePhotographe = photographerCard.singlePhotographDOM(photographerCard.name, photographerCard.id, photographerCard.city, photographerCard.country, photographerCard.tagline, photographerCard.price, photographerCard.picture);
-    
+    const singlePhotographe = photographerCard.singlePhotographDOM(
+        photographerCard.name,
+        photographerCard.id,
+        photographerCard.city,
+        photographerCard.country,
+        photographerCard.tagline,
+        photographerCard.price,
+        photographerCard.picture
+    );
+
     // DOM Element - insérer header dans le main puis le menu trier par
     const sortBy = document.querySelector(".sortby");
     PhotographerMain.appendChild(singlePhotographe);
@@ -26,24 +39,43 @@ async function displayOnePhotographer(data) {
 
     // filter() la gallerie de ce photographe
     const AllGaleriesData = data.media;
-    const hisGaleryData = AllGaleriesData.filter(element => element.photographerId == id )
-    // console.log(singlePhotographerData.name);
+    const hisGaleryData = AllGaleriesData.filter(
+        (element) => element.photographerId == id
+    );
+
+    const splitName = photographerCard.name.split(" ");
+    const firstName = splitName.shift().replace("-", " ");
 
     // Pour ce photographe, afficher sa galerie de photo sur sa page
-    hisGaleryData.forEach(hisGaleryElementsData => {
-        const galeriePanel = galeryFactory(hisGaleryElementsData);
-        galeriePanel.galeryPhotographDOM(galeriePanel.date, galeriePanel.id, galeriePanel.likes, galeriePanel.image,galeriePanel.photographeId, galeriePanel.price, galeriePanel.title);
+    hisGaleryData.forEach((hisGaleryElementsData) => {
+        let media = '';
+        if (hisGaleryElementsData.image != undefined) {
+            media = hisGaleryElementsData.image;
+        } else {
+            media = hisGaleryElementsData.video;
+        }
+
+        const galeriePanel = galeryFactory(hisGaleryElementsData, firstName, media);
+        galeriePanel.galeryPhotographDOM(
+            galeriePanel.date,
+            galeriePanel.id,
+            galeriePanel.likes,
+            galeriePanel.mediaPath,
+            galeriePanel.photographeId,
+            galeriePanel.price,
+            galeriePanel.title
+        );
     });
 
     const photographGalery = document.querySelector(".photograph-galery");
     PhotographerMain.appendChild(photographGalery);
 
     modalContact();
-};
+}
 
 async function init() {
     const photographers = await getData();
     displayOnePhotographer(photographers);
-};
+}
 
-init(); 
+init();
