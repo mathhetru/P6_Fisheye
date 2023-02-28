@@ -90,27 +90,35 @@ function singlePhotographDOM(name, id, city, country, tagline, price, picture) {
 function galeryPhotographDOM(date, id, likes, mediaPath, photographeId, price, title) {
   const photographGalery = document.querySelector(".photograph-galery");
 
+  const divGalery = document.createElement("div");
+  divGalery.className ="photograph-galery-panel"
+
+  const divContent = document.createElement("div");
+  divContent.className ="photograph-galery-content"
+
   const h2 = document.createElement("h2");
-  h2.className = 'photograph-galery__title';
+  h2.className = 'photograph-galery-content__title';
   h2.textContent = title;
 
   let extension = mediaPath.substring(mediaPath.length - 3, mediaPath.length);
   switch (extension) {
     case "jpg":
       const img = document.createElement("img");
-      img.className = 'photograph-galery__media';
+      img.className = 'photograph-galery-content__media';
       img.setAttribute("src", mediaPath);
       img.setAttribute('alt', title);
-      photographGalery.appendChild(img);
+      divGalery.appendChild(img);
       break;
     case "mp4":
       const video = document.createElement("video");
-      video.className = 'photograph-galery__media';
+      video.className = 'photograph-galery-content__media';
       video.setAttribute("src", mediaPath);
       video.setAttribute('alt', title);
-      photographGalery.appendChild(video);
+      divGalery.appendChild(video);
       break;
   }
 
-  photographGalery.appendChild(h2);
+  photographGalery.appendChild(divGalery);
+  divGalery.appendChild(divContent);
+  divContent.appendChild(h2);
 }
