@@ -100,6 +100,19 @@ function galeryPhotographDOM(date, id, likes, mediaPath, photographeId, price, t
   h2.className = 'photograph-galery-content__title';
   h2.textContent = title;
 
+  const divNumberHeart = document.createElement("div");
+  divNumberHeart.className = 'photograph-galery-content-hearts';
+
+  const pNumberheart = document.createElement("p");
+  pNumberheart.className = 'photograph-galery-content-hearts__text';
+  pNumberheart.textContent = 0;
+
+  const heart = document.createElement("i");
+  heart.className = 'fas fa-heart';
+  heart.addEventListener("click", function () {
+		pNumberheart.textContent++
+	});
+
   let extension = mediaPath.substring(mediaPath.length - 3, mediaPath.length);
   switch (extension) {
     case "jpg":
@@ -121,4 +134,7 @@ function galeryPhotographDOM(date, id, likes, mediaPath, photographeId, price, t
   photographGalery.appendChild(divGalery);
   divGalery.appendChild(divContent);
   divContent.appendChild(h2);
+  divContent.appendChild(divNumberHeart);
+  divNumberHeart.appendChild(pNumberheart);
+  divNumberHeart.appendChild(heart);
 }
