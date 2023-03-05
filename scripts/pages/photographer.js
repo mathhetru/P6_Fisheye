@@ -6,48 +6,31 @@ import { getData } from "../factories/data.js";
 import { modalContact } from "../utils/contactForm.js";
 
 // Function affiche tous les photograhes
-async function displayOnePhotographer(data) {
-    const string = window.location.href;
-    const url = new URL(string);
-    const id = url.searchParams.get("id");
-
+async function displayOnePhotographer(photographer, photographerMedia) {
     // DOM Element - header des pages photographes uniques
     const PhotographerMain = document.getElementById("main");
-
-    // Find() le photographe dans le tableau des photographes
-    const AllPhotographersData = data.photographers;
-    const singlePhotographerData = AllPhotographersData.find(
-        (element) => element.id == id
-    );
-
     // Pour ce photographe, afficher ses élements sur sa page
-    const photographerCard = photographerFactory(singlePhotographerData);
-    const singlePhotographe = photographerCard.singlePhotographDOM(
-        photographerCard.name,
-        photographerCard.id,
-        photographerCard.city,
-        photographerCard.country,
-        photographerCard.tagline,
-        photographerCard.price,
-        photographerCard.picture
-    );
+    const photographerCard = photographerFactory(photographer);
+    const singlePhotographe = photographerCard.singlePhotographDOM({
+        name: photographerCard.name,
+        id: photographerCard.id,
+        picture: photographerCard.picture,
+        city: photographerCard.city,
+        country: photographerCard.country,
+        tagline: photographerCard.tagline,
+        price: photographerCard.price,
+    });
 
     // DOM Element - insérer header dans le main puis le menu trier par
     const sortBy = document.querySelector(".sortby");
     PhotographerMain.appendChild(singlePhotographe);
     PhotographerMain.appendChild(sortBy);
-
-    // filter() la gallerie de ce photographe
-    const AllGaleriesData = data.media;
-    const hisGaleryData = AllGaleriesData.filter(
-        (element) => element.photographerId == id
-    );
-
+   
     const splitName = photographerCard.name.split(" ");
     const firstName = splitName.shift().replace("-", " ");
 
     // Pour ce photographe, afficher sa galerie de photo sur sa page
-    hisGaleryData.forEach((hisGaleryElementsData) => {
+    photographerMedia.forEach((hisGaleryElementsData) => {
         let media = '';
         if (hisGaleryElementsData.image != undefined) {
             media = hisGaleryElementsData.image;
@@ -55,16 +38,18 @@ async function displayOnePhotographer(data) {
             media = hisGaleryElementsData.video;
         }
 
+        // const media2 =  hisGaleryElementsData.image || hisGaleryElementsData.video
+
         const galeriePanel = galeryFactory(hisGaleryElementsData, firstName, media);
-        galeriePanel.galeryPhotographDOM(
-            galeriePanel.date,
-            galeriePanel.id,
-            galeriePanel.likes,
-            galeriePanel.mediaPath,
-            galeriePanel.photographeId,
-            galeriePanel.price,
-            galeriePanel.title
-        );
+        galeriePanel.galeryPhotographDOM({
+            date: galeriePanel.date,
+            id: galeriePanel.id,
+            likes: galeriePanel.likes,
+            mediaPath: galeriePanel.mediaPath,
+            photographeId: galeriePanel.photographeId,
+            price: galeriePanel.price,
+            title: galeriePanel.title
+        });
     });
 
     const photographGalery = document.querySelector(".photograph-galery");
@@ -73,9 +58,26 @@ async function displayOnePhotographer(data) {
     modalContact();
 }
 
+function findPhotographerById(photographersList, photographerId) {
+    return photographersList.find(
+        (element) => element.id == photographerId
+    );
+}
+
+function findPhotographerMedias(mediaList, photographerId) {
+    return mediaList.filter(
+        (element) => element.photographerId == photographerId
+    )
+}
+
 async function init() {
-    const photographers = await getData();
-    displayOnePhotographer(photographers);
+    const data = await getData();
+    const url = new URL(window.location.href);
+    const photographerId = url.searchParams.get("id");
+    const photographer = findPhotographerById(data.photographers, photographerId);
+    const photographerMedia = findPhotographerMedias(data.media, photographerId);
+
+    displayOnePhotographer(photographer, photographerMedia);
 }
 
 init();

@@ -1,5 +1,5 @@
-export function photographerFactory(data) {
-  const { name, id, city, country, tagline, price, portrait } = data;
+export function photographerFactory(photographer) {
+  const { name, id, city, country, tagline, price, portrait } = photographer;
   const picture = `img/photographers_ID/${portrait}`;
   return { name, id, city, country, tagline, price, picture, indexArticleDOM, singlePhotographDOM };
 }
@@ -8,6 +8,31 @@ export function galeryFactory(data, firstName, media) {
   const { date, id, likes, photographeId, price, title } = data;
   let mediaPath = `img/${firstName}/${media}`;
   return { date, id, likes, mediaPath, photographeId, price, title, galeryPhotographDOM };
+}
+
+export function extensionFactory(media) {
+  const media = media;
+  
+   //! ajouter le contenu suivant dans une factory
+  //! faire un split avec le (".") pour récupérer l'extension 
+  let extension = mediaPath.substring(mediaPath.length - 3, mediaPath.length);
+  switch (extension) {
+    case "jpg":
+    case "jpeg":
+      const img = document.createElement("img");
+      img.className = 'photograph-galery-content__media';
+      img.setAttribute("src", mediaPath);
+      img.setAttribute('alt', title);
+      divGalery.appendChild(img);
+      break;
+    case "mp4":
+      const video = document.createElement("video");
+      video.className = 'photograph-galery-content__media';
+      video.setAttribute("src", mediaPath);
+      video.setAttribute('alt', title);
+      divGalery.appendChild(video);
+      break;
+  }
 }
 
 function indexArticleDOM(name, id, city, country, tagline, price, picture) {
@@ -52,7 +77,7 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
   return article;
 }
 
-function singlePhotographDOM(name, id, city, country, tagline, price, picture) {
+function singlePhotographDOM({ name, id, city, country, tagline, price, picture }) {
   const photographersHeader = document.querySelector(".photograph-header");
 
   const divInformations = document.createElement("div");
@@ -87,14 +112,14 @@ function singlePhotographDOM(name, id, city, country, tagline, price, picture) {
   return photographersHeader;
 }
 
-function galeryPhotographDOM(date, id, likes, mediaPath, photographeId, price, title) {
+function galeryPhotographDOM({ date, id, likes, mediaPath, photographeId, price, title }) {
   const photographGalery = document.querySelector(".photograph-galery");
 
   const divGalery = document.createElement("div");
-  divGalery.className ="photograph-galery-panel"
+  divGalery.className = "photograph-galery-panel"
 
   const divContent = document.createElement("div");
-  divContent.className ="photograph-galery-content"
+  divContent.className = "photograph-galery-content"
 
   const h2 = document.createElement("h2");
   h2.className = 'photograph-galery-content__title';
@@ -105,31 +130,13 @@ function galeryPhotographDOM(date, id, likes, mediaPath, photographeId, price, t
 
   const pNumberheart = document.createElement("p");
   pNumberheart.className = 'photograph-galery-content-hearts__text';
-  pNumberheart.textContent = 0;
+  pNumberheart.textContent = likes;
 
   const heart = document.createElement("i");
   heart.className = 'fas fa-heart';
   heart.addEventListener("click", function () {
-		pNumberheart.textContent++
-	});
-
-  let extension = mediaPath.substring(mediaPath.length - 3, mediaPath.length);
-  switch (extension) {
-    case "jpg":
-      const img = document.createElement("img");
-      img.className = 'photograph-galery-content__media';
-      img.setAttribute("src", mediaPath);
-      img.setAttribute('alt', title);
-      divGalery.appendChild(img);
-      break;
-    case "mp4":
-      const video = document.createElement("video");
-      video.className = 'photograph-galery-content__media';
-      video.setAttribute("src", mediaPath);
-      video.setAttribute('alt', title);
-      divGalery.appendChild(video);
-      break;
-  }
+    pNumberheart.textContent = likes + 1;
+  });
 
   photographGalery.appendChild(divGalery);
   divGalery.appendChild(divContent);
