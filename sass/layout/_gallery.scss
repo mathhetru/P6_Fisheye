@@ -81,3 +81,9 @@
         overflow-clip-margin: unset;
     }
 }
+
+@media screen and (max-width: 1024px) {
+    .photograph-galery{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

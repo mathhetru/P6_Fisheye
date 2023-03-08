@@ -25,20 +25,13 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     const sortBy = document.querySelector(".sortby");
     PhotographerMain.appendChild(singlePhotographe);
     PhotographerMain.appendChild(sortBy);
-   
+    
     const splitName = photographerCard.name.split(" ");
     const firstName = splitName.shift().replace("-", " ");
 
     // Pour ce photographe, afficher sa galerie de photo sur sa page
     photographerMedia.forEach((hisGaleryElementsData) => {
-        let media = '';
-        if (hisGaleryElementsData.image != undefined) {
-            media = hisGaleryElementsData.image;
-        } else {
-            media = hisGaleryElementsData.video;
-        }
-
-        // const media2 =  hisGaleryElementsData.image || hisGaleryElementsData.video
+        let media =  hisGaleryElementsData.image || hisGaleryElementsData.video;
 
         const galeriePanel = galeryFactory(hisGaleryElementsData, firstName, media);
         galeriePanel.galeryPhotographDOM({

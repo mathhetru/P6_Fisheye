@@ -10,12 +10,9 @@ export function galeryFactory(data, firstName, media) {
   return { date, id, likes, mediaPath, photographeId, price, title, galeryPhotographDOM };
 }
 
-export function extensionFactory(media) {
-  const media = media;
-  
-   //! ajouter le contenu suivant dans une factory
-  //! faire un split avec le (".") pour récupérer l'extension 
-  let extension = mediaPath.substring(mediaPath.length - 3, mediaPath.length);
+function extensionFactory(mediaPath, title, divGalery) {
+  let file = mediaPath.split(".");
+  let extension = file[1];
   switch (extension) {
     case "jpg":
     case "jpeg":
@@ -116,7 +113,9 @@ function galeryPhotographDOM({ date, id, likes, mediaPath, photographeId, price,
   const photographGalery = document.querySelector(".photograph-galery");
 
   const divGalery = document.createElement("div");
-  divGalery.className = "photograph-galery-panel"
+  divGalery.className = "photograph-galery-panel";
+  
+  extensionFactory(mediaPath, title, divGalery);
 
   const divContent = document.createElement("div");
   divContent.className = "photograph-galery-content"
