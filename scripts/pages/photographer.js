@@ -48,7 +48,7 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     const photographGalery = document.querySelector(".photograph-galery");
     PhotographerMain.appendChild(photographGalery);
 
-    modalContact();
+    modalContact(photographer);
 }
 
 function findPhotographerById(photographersList, photographerId) {

@@ -1,61 +1,114 @@
 #contact-modal {
     display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
 }
 
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    max-width: 600px;
+    max-height: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    transform: translateY(10%);
+    animation-name: modalopen;
+    animation-duration: 0.8s;
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    &-header__img {
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    &-header__title {
+        color: $black;
+        font-weight: 500;
+        font-size: 53px;
+        text-align: left;
+        margin: 0 0 20px 0;
+    }
+
+    &-form {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &-block {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: self-start;
+    }
+
+    &-label__text {
+        color: #312E2E;
+        font-size: 26px;
+        margin-bottom: 3px;
+    }
+
+    &-input {
+        width: 100%;
+        height: 58px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 3px;
+
+        &[type="text"],
+        &[type="email"] {
+            padding: 1px 10px;
+        }
+
+        &:focus-visible {
+            outline: 3px solid $red;
+        }
+    }
+
+    &-textarea {
+        width: 100%;
+        max-width: 100%;
+        height: 170px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 3px;
+
+        &:focus-visible {
+            outline: 3px solid $red;
+        }
+    }
+
+    &-send__btn {
+        margin-top: 20px;
+        @include btn;
+    }
 }
 
-.modal header {
-    justify-content: space-between;
-    width: 100%;
-}
+/** KEYFRAME ANIMATION **/
+@keyframes modalopen {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
 
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    color: #312E2E;
-    font-size: 36px;
-}
-
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
-
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
-}
-
-.send-button{
-    @include btn;
+    to {
+        opacity: 1;
+    }
 }

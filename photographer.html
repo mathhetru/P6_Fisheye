@@ -12,7 +12,6 @@
 
   <body>
     <div class="screen-size">
-
       <header class="header" aria-label="header de la page">
         <a href="index.html" class="header__link"><img src="assets/images/logo.png" class="header-logo"/></a>
       </header>
@@ -42,34 +41,34 @@
             </div>
         </section>
         <section class="photograph-galery">
-          
         </section>
+        
       </main>
       
       <section id="contact-modal">
         <div class="modal">
           <header aria-label="header du formulaire" class="modal-header">
-            <h2 class="modal-header__title">Contactez-moi</h2>
-            <img class="modal-img close-button" src="assets/icons/close.svg"/>
+            <h2 class="modal-header__title"></h2>
+            <img class="modal-header__img js-close__btn" src="assets/icons/close.svg"/>
           </header>
-          <form class="modal-form">
-            <div>
-              <label class="modal-label-text" for="first">Prénom</label>
-              <input class="modal-text-control" type="text" id="first" name="first" minlength="2">
+          <form id="form" class="modal-form">
+            <div class="modal-block">
+              <label class="modal-label__text">Prénom</label>
+              <input class="modal-input first" type="text" minlength="2">
             </div>
-            <div>
-              <label class="modal-label-text" for="first">Nom</label>
-              <input class="modal-text-control" type="text" id="last" name="last" minlength="2">
+            <div class="modal-block">
+              <label class="modal-label__text">Nom</label>
+              <input class="modal-input last" type="text" minlength="2">
             </div>
-            <div>
-              <label class="modal-label-text" for="email">Nom</label>
-              <input class="modal-text-control" type="email" id="last" name="email" minlength="2">
+            <div class="modal-block">
+              <label class="modal-label__text">Email</label>
+              <input class="modal-input email" type="text" minlength="2">
             </div>
-            <div>
-              <label class="modal-label-text" for="text">Votre message</label>
-              <input class="modal-text-control" type="text" id="last" name="text" minlength="2">
+            <div class="modal-block">
+              <label class="modal-label__text">Votre message</label>
+              <textarea class="modal-textarea msg"></textarea>
             </div>
-            <button class="send-button">Envoyer</button>
+            <input class="modal-send__btn" type="submit" value="Envoyer">
           </form>
         </section>
       </div>

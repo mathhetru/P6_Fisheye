@@ -90,7 +90,7 @@ function singlePhotographDOM({ name, id, city, country, tagline, price, picture 
   pTag.textContent = tagline;
 
   const buttonContact = document.createElement("button");
-  buttonContact.className = 'contact-button';
+  buttonContact.className = 'contact__btn';
   buttonContact.setAttribute('aria-label', "Bouton pour ouvrir formulaire de contact")
   buttonContact.textContent = "Contactez-moi";
 
