@@ -1,0 +1,32 @@
+.block-price-likes{
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 380px;
+    height: 60px;
+    border-radius: 5px 5px 0 0;
+    background-color: $lightOrange;
+    bottom: 0;
+    right:30px;
+    color: $black;
+    padding: 20px 40px;
+}
+
+.block-likes{
+    display: flex;
+    align-items: center;
+    &__text{
+        margin: 0;
+        font-weight: $w-medium;
+        font-size: 20px;
+        margin-right: 15px;
+    }
+}
+
+.block-price{
+    &__text{
+        margin: 0;
+        font-weight: $w-medium;
+        font-size: 20px;
+    }
+}

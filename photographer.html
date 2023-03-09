@@ -20,11 +20,11 @@
         <header aria-label="header du contenu photographe" class="photograph-header">
         </header>
         <section class="sortby">
-            <p class="sortby__title">Trier par</p>
+            <!-- <label class="sortby__label"></label>
             <div class="sortby-full">
               <div class="sortby-full-tag">
                 <p class="sortby-full__text">Popularité</p>
-                <i class="fas fa-chevron-up"></i>
+                
               </div>
               <div class="sortby-full-tag">
                 <p class="sortby-full__text">Date</p>
@@ -32,17 +32,31 @@
               <div class="sortby-full-tag">
                 <p class="sortby-full__text">Titre</p>
               </div>
+            </div> -->
+          <label id="dropdown" class="sortby__label">Trier par</label>
+          <div>
+            <button class="sortby-select__button" role="button" aria-haspopup="listbox">
+              Popularité
+              <i class="fas fa-chevron-up"></i>
+            </button>
+            <div class="sortby-select-panel">
+              <option class="sortby-select-option" role="listbox" aria-labelledby="dropdown">
+                Date
+              </option>
+              <option class="sortby-select-option" role="listbox" aria-labelledby="dropdown">
+                Titre
+              </option>
             </div>
-            <div class="sortby-single">
-              <div class="sortby-single-tag">
-                <p class="sortby-single__text">Popularité</p>
-                <i class="fas fa-chevron-up sortby-single__icone"></i>
-              </div>
-            </div>
+          </div>
         </section>
         <section class="photograph-galery">
         </section>
-        
+        <section class="block-price-likes">
+          <div class="block-likes">
+          </div>
+          <div class="block-price">
+          </div>
+        </section>
       </main>
       
       <section id="contact-modal">

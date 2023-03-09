@@ -106,6 +106,16 @@ function singlePhotographDOM({ name, id, city, country, tagline, price, picture 
   photographersHeader.appendChild(buttonContact);
   photographersHeader.appendChild(img);
 
+  const button = document.querySelector(".sortby-select__button");
+  button.addEventListener("click", function() {
+    const panel = this.nextElementSibling;
+    if (panel.style.display === "none") {
+      panel.style.display = "flex";
+    } else {
+      panel.style.display = "none";
+    }
+  });
+
   return photographersHeader;
 }
 

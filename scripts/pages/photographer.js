@@ -4,6 +4,7 @@ import {
 } from "../factories/photographer.js";
 import { getData } from "../factories/data.js";
 import { modalContact } from "../utils/contactForm.js";
+import { showPriceAndLikes } from "../utils/priceAndLikesBlock.js";
 
 // Function affiche tous les photograhes
 async function displayOnePhotographer(photographer, photographerMedia) {
@@ -49,6 +50,7 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     PhotographerMain.appendChild(photographGalery);
 
     modalContact(photographer);
+    showPriceAndLikes(photographer, photographerMedia);
 }
 
 function findPhotographerById(photographersList, photographerId) {
