@@ -106,13 +106,19 @@ function singlePhotographDOM({ name, id, city, country, tagline, price, picture 
   photographersHeader.appendChild(buttonContact);
   photographersHeader.appendChild(img);
 
+
+  //! à mettre dans une function à part et faire le sort par tag, revoir css + ajouter toggle
   const button = document.querySelector(".sortby-select__button");
+
   button.addEventListener("click", function() {
     const panel = this.nextElementSibling;
+    const icone = document.querySelector(".fa-chevron-up");
     if (panel.style.display === "none") {
       panel.style.display = "flex";
+      icone.classList.add("rotate");
     } else {
       panel.style.display = "none";
+      icone.classList.remove("rotate");
     }
   });
 

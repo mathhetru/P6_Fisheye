@@ -58,7 +58,10 @@
         }
     }
 }
-
+.rotate{
+    transform: rotate(180deg);
+    transition: .3s ease-in-out;
+}
 .photograph-galery{
     max-width: 1240px;
     margin: 60px 100px;
@@ -107,3 +110,11 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+// @keyframes spin { 
+//     from { 
+//         transform: rotate(0deg); 
+//     } to { 
+//         transform: rotate(180deg); 
+//     }
+// }

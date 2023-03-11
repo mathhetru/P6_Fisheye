@@ -183,6 +183,11 @@
   width: 100%;
 }
 
+.rotate {
+  transform: rotate(180deg);
+  transition: 0.3s ease-in-out;
+}
+
 .photograph-galery {
   max-width: 1240px;
   margin: 60px 100px;
