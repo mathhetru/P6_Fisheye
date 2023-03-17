@@ -40,14 +40,21 @@
         border-radius: 0 0 5px 5px;
         overflow: hidden;
     }
-    &-select-option{
-        margin: 15px 0;
+    &-select__option{
+        z-index: 500;
+        color: $white;
+        background-color: $red;
+        border: none;
+        outline: none;
+        text-align: left;
+        margin:16px 0;
+        padding: 0;
         font-size: 15px;
         font-weight: $w-bold;
         position: relative;
         cursor: pointer;
     }
-    &-select-option{
+    &-select__option{
         &::before{
             content: "";
             top: -14px;

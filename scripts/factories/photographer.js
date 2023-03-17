@@ -4,37 +4,65 @@ export function photographerFactory(photographer) {
   return { name, id, city, country, tagline, price, picture, indexArticleDOM, singlePhotographDOM };
 }
 
-export function galeryFactory(data, firstName, media) {
+function galeryFactory(data, firstName, media) {
   const { date, id, likes, photographeId, price, title } = data;
   let mediaPath = `img/${firstName}/${media}`;
-  return { date, id, likes, mediaPath, photographeId, price, title, galeryPhotographDOM };
+  return { date, id, likes, mediaPath, photographeId, price, title, generateMediaDOM };
 }
 
-function extensionFactory(mediaPath, title, divGalery) {
+export function generateGallery(mediasList, photographerCard) {
+  const splitName = photographerCard.name.split(" ");
+  const firstName = splitName.shift().replace("-", " ");
+  
+  const mediasListDOM = mediasList.map((oneElement) => {
+      const media =  oneElement.image || oneElement.video;
+      const galeriePanel = galeryFactory(oneElement, firstName, media);
+
+      return galeriePanel.generateMediaDOM({
+          date: galeriePanel.date,
+          id: galeriePanel.id,
+          likes: galeriePanel.likes,
+          mediaPath: galeriePanel.mediaPath,
+          photographeId: galeriePanel.photographeId,
+          price: galeriePanel.price,
+          title: galeriePanel.title
+      });
+  });
+
+  document.querySelector(".photograph-galery").innerHTML = mediasListDOM.join('')
+}
+
+function extensionFactory(mediaPath, title) {
   let file = mediaPath.split(".");
   let extension = file[1];
   switch (extension) {
     case "jpg":
     case "jpeg":
-      const img = document.createElement("img");
-      img.className = 'photograph-galery-content__media';
-      img.setAttribute("src", mediaPath);
-      img.setAttribute('alt', title);
-      divGalery.appendChild(img);
-      break;
+      return `<img class="photograph-galery-content__media" src="${mediaPath}" alt="${title}">`
     case "mp4":
-      const video = document.createElement("video");
-      video.className = 'photograph-galery-content__media';
-      video.setAttribute("src", mediaPath);
-      video.setAttribute('alt', title);
-      divGalery.appendChild(video);
-      break;
+      return `<video class="photograph-galery-content__media" alt="${title}">
+        <source src="${mediaPath}" />
+      </video>`
   }
 }
 
 function indexArticleDOM(name, id, city, country, tagline, price, picture) {
   // article
   const article = document.createElement("article");
+
+  const articleDOM = `
+  <article class="card-article" aria-label="Fiche du photographe ${name}" data-photographer-id="${id}">
+    <a class="card-article__link" href="${picture}" aria-label="Lien vers la page du photographe ${name}">
+      <img class="card-article__img" src="img/photographers_ID/EllieRoseWilkens.jpg" alt="Portrait du photographe ${name}">
+      <h2 class="card-article-title">${name}</h2>
+    </a>
+    <div class="card-info">
+      <p class="card-info-city">${city}, ${country}</p>
+      <p class="card-info-tag">${tagline}</p>
+      <p class="card-info-price">${price}€/jour</p>
+    </div>
+  </article>`
+  /*
   article.className = 'card-article';
   article.setAttribute("aria-label", "Fiche du photographe " + name);
   // dans article, le lien
@@ -70,78 +98,80 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
   link.appendChild(h2);
   divInformations.appendChild(pCity);
   divInformations.appendChild(pTag);
-  divInformations.appendChild(pPrice);
-  return article;
+  divInformations.appendChild(pPrice);*/
+  return articleDOM;
 }
 
 function singlePhotographDOM({ name, city, country, tagline, picture }) {
-  const photographersHeader = document.querySelector(".photograph-header");
 
-  const divInformations = document.createElement("div");
-  divInformations.className = 'photograph-header-infos';
-  const h1 = document.createElement("h1");
-  h1.className = 'photograph-header-infos__title';
-  h1.textContent = name;
-  const pCity = document.createElement("p");
-  pCity.className = 'photograph-header-infos__city';
-  pCity.textContent = city + ", " + country;
-  const pTag = document.createElement("p");
-  pTag.className = 'photograph-header-infos__tag';
-  pTag.textContent = tagline;
+  // const photographersHeader = `
+  //   <header aria-label="header du contenu photographe" class="photograph-header">
+  //     <div class="photograph-header-infos">
+  //       <h1 class="photograph-header-infos__title">${name}</h1>
+  //       <p class="photograph-header-infos__city">${city}, ${country}</p>
+  //       <p class="photograph-header-infos__tag">${tagline}</p>
+  //     </div>
+  //     <button class="contact__btn" aria-label="Bouton pour ouvrir formulaire de contact">Contactez-moi</button>
+  //     <img class="photograph-header__img" src="${picture}" alt="Portrait du photographe ${name}">
+  //   </header>` 
 
-  const buttonContact = document.createElement("button");
-  buttonContact.className = 'contact__btn';
-  buttonContact.setAttribute('aria-label', "Bouton pour ouvrir formulaire de contact")
-  buttonContact.textContent = "Contactez-moi";
+  const photographersHeaderDOM = `
+    <div class="photograph-header-infos">
+      <h1 class="photograph-header-infos__title">${name}</h1>
+      <p class="photograph-header-infos__city">${city}, ${country}</p>
+      <p class="photograph-header-infos__tag">${tagline}</p>
+    </div>
+    <button class="contact__btn" aria-label="Bouton pour ouvrir formulaire de contact">Contactez-moi</button>
+    <img class="photograph-header__img" src="${picture}" alt="Portrait du photographe ${name}">` 
 
-  const img = document.createElement("img");
-  img.className = 'photograph-header__img';
-  img.setAttribute("src", picture);
-  img.setAttribute('alt', "Portrait du photographe " + name);
 
-  photographersHeader.appendChild(divInformations);
-  divInformations.appendChild(h1);
-  divInformations.appendChild(pCity);
-  divInformations.appendChild(pTag);
-  photographersHeader.appendChild(buttonContact);
-  photographersHeader.appendChild(img);
+  // const photographersHeader = document.querySelector(".photograph-header");
 
-  return photographersHeader;
+  // const divInformations = document.createElement("div");
+  // divInformations.className = 'photograph-header-infos';
+  // const h1 = document.createElement("h1");
+  // h1.className = 'photograph-header-infos__title';
+  // h1.textContent = name;
+  // const pCity = document.createElement("p");
+  // pCity.className = 'photograph-header-infos__city';
+  // pCity.textContent = city + ", " + country;
+  // const pTag = document.createElement("p");
+  // pTag.className = 'photograph-header-infos__tag';
+  // pTag.textContent = tagline;
+
+  // const buttonContact = document.createElement("button");
+  // buttonContact.className = 'contact__btn';
+  // buttonContact.setAttribute('aria-label', "Bouton pour ouvrir formulaire de contact")
+  // buttonContact.textContent = "Contactez-moi";
+
+  // const img = document.createElement("img");
+  // img.className = 'photograph-header__img';
+  // img.setAttribute("src", picture);
+  // img.setAttribute('alt', "Portrait du photographe " + name);
+
+  // photographersHeader.appendChild(divInformations);
+  // divInformations.appendChild(h1);
+  // divInformations.appendChild(pCity);
+  // divInformations.appendChild(pTag);
+  // photographersHeader.appendChild(buttonContact);
+  // photographersHeader.appendChild(img);
+
+  return photographersHeaderDOM;
 }
 
-function galeryPhotographDOM({ id, likes, mediaPath,title }) {
-  const photographGalery = document.querySelector(".photograph-galery");
+function generateMediaDOM({ id, likes, mediaPath, title }) {
+  const media = `
+    <div class="photograph-galery-panel" data-id="${id}">
+      ${extensionFactory(mediaPath, title)}
+      <div class="photograph-galery-content">
+        <h2 class="photograph-galery-content__title">${title}</h2>
+        <div class="photograph-galery-content-hearts">
+          <p class="photograph-galery-content-hearts__text">${likes}</p>
+          <i class="fas fa-heart"></i>
+        </div>
+      </div>
+    </div>
+  `
 
-  const divGalery = document.createElement("div");
-  divGalery.className = "photograph-galery-panel";
-  divGalery.setAttribute("data-id", id);
-  
-  extensionFactory(mediaPath, title, divGalery);
-
-  const divContent = document.createElement("div");
-  divContent.className = "photograph-galery-content"
-
-  const h2 = document.createElement("h2");
-  h2.className = 'photograph-galery-content__title';
-  h2.textContent = title;
-
-  const divNumberHeart = document.createElement("div");
-  divNumberHeart.className = 'photograph-galery-content-hearts';
-
-  const pNumberheart = document.createElement("p");
-  pNumberheart.className = 'photograph-galery-content-hearts__text';
-  pNumberheart.textContent = likes;
-
-  const heart = document.createElement("i");
-  heart.className = 'fas fa-heart';
-  heart.addEventListener("click", function () {
-    pNumberheart.textContent = likes + 1;
-  });
-
-  photographGalery.appendChild(divGalery);
-  divGalery.appendChild(divContent);
-  divContent.appendChild(h2);
-  divContent.appendChild(divNumberHeart);
-  divNumberHeart.appendChild(pNumberheart);
-  divNumberHeart.appendChild(heart);
+  return media
 }

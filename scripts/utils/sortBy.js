@@ -1,10 +1,28 @@
-import { galeryFactory } from "../factories/photographer.js";
+import { generateGallery } from "../factories/photographer.js";
+
+// let sortOptions = [
+//     { label: 'Popularité', id: 'popularity' },
+//     { label: 'Date', id: 'date' },
+//     { label: 'Titre', id: 'title' },
+// ]
+
+// function generateDropdown() {
+//     const dropdownDOM = sortOptions.map(option => `
+//     <button class="sortby-select__button button" role="button" aria-haspopup="listbox" data-id="${option.id}}">
+//         ${option.label}
+//         <i class="fas fa-chevron-up"></i>
+//     </button>`);
+//     const dropdown = `
+//         <ul>
+//             ${dropdownDOM.join('')}
+//         </ul>
+//     `
+// }
 
 export function dropDown(photographerCard, photographerMedia) {
-    //! faire le sort par tag
-    const button = document.querySelector(".sortby-select__button");
+    const firstButton = document.querySelector(".sortby-select__button");
 
-    button.addEventListener("click", function () {
+    firstButton.addEventListener("click", function () {
         const panel = document.querySelector(".sortby-select-panel");
         const icone = document.querySelector(".fa-chevron-up");
         let result = panel.classList.toggle("flex");
@@ -15,35 +33,22 @@ export function dropDown(photographerCard, photographerMedia) {
         }
     });
 
-    const allOptions = document.querySelectorAll(".sortby-select-option");
+    // document.querySelector('.sortby > div').innerHTML = generateDropdown()
+
+    const allButtons = document.querySelectorAll(".button");
 
     let optionValue;
-    allOptions.forEach((option) => {
+    allButtons.forEach((option) => {
         option.addEventListener("click", function () {
-            optionValue = option.getAttribute("data-categorie");
+            optionValue = option.getAttribute("data-id");
             if ( optionValue == "date" ) {
+                // const clickedOption = sortOptions.findIndex(o => o.id === optionValue)
+                // sortOptions = 
                 photographerMedia.sort(sortByDate);
             } else if ( optionValue == "title" ) {
                 photographerMedia.sort(sortByTitle);
             } 
-            const splitName = photographerCard.name.split(" ");
-            const firstName = splitName.shift().replace("-", " ");
-            
-            photographerMedia.forEach((oneElement) => {
-                let media =  oneElement.image || oneElement.video;
-        
-                const galeriePanel = galeryFactory(oneElement, firstName, media);
-        
-                galeriePanel.galeryPhotographDOM({
-                    date: galeriePanel.date,
-                    id: galeriePanel.id,
-                    likes: galeriePanel.likes,
-                    mediaPath: galeriePanel.mediaPath,
-                    photographeId: galeriePanel.photographeId,
-                    price: galeriePanel.price,
-                    title: galeriePanel.title
-                });
-            });
+            generateGallery(photographerMedia, photographerCard)
         });
     });
 
@@ -72,10 +77,10 @@ export function sortByDate(a, b) {
 
 export function sortByTitle(a, b) {
     if (a.title > b.title) {
-        return -1;
+        return 1;
     }
     if (a.title < b.title) {
-        return 1;
+        return -1;
     }
     return 0;
 }

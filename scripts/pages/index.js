@@ -19,7 +19,8 @@ async function displayIndexPhotographers(data) {
             photographerCard.picture
         );
 
-        photographersSection.appendChild(indexArticlePanel);
+        // photographersSection.appendChild(indexArticlePanel);
+        photographersSection.innerHTML = indexArticlePanel.join('');
     });
 }
 

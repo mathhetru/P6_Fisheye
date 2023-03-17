@@ -1,25 +1,38 @@
 export function showPriceAndLikes(photographer, photographerMedia) {
-    const blockLikes = document.querySelector(".block-likes");
-    const blockPrice = document.querySelector(".block-price");
 
-    const allLikes = photographerMedia.map(photographerMedia  => photographerMedia.likes)
+    const hearts = document.querySelectorAll('.photograph-galery-content-hearts')
+
+    hearts.forEach(function (heart) {
+        const text = heart.querySelector('.photograph-galery-content-hearts__text')
+        const likes = Number(text.textContent)
+        const icon = heart.querySelector('.fa-heart')
+        const onClick = () => {
+            text.textContent = likes + 1;
+            let addToTotalLikes = parseInt(document.querySelector('.block-likes__text').innerText);
+            document.querySelector('.block-likes__text').innerText = addToTotalLikes + 1;
+            icon.removeEventListener("click", onClick);
+        }
+        icon.addEventListener("click", onClick);
+    })
+
+    const allLikes = photographerMedia.map(photographerMedia  => photographerMedia.likes);
 
     const initialLike = 0;
-    const totalLike = allLikes.reduce(
+    const totalLikes = allLikes.reduce(
         (accumulator, currentLike) => accumulator + currentLike,
         initialLike);
     
-    const pLikes = document.createElement("p");
-    pLikes.className = 'block-likes__text';
-    pLikes.textContent = totalLike;
-    const heart= document.createElement("i");
-    heart.className = 'fas fa-heart';
-
-    const pPrice = document.createElement("p");
-    pPrice.className = 'block-price__text';
-    pPrice.textContent = photographer.price + "€ / jour";
-
-    blockLikes.appendChild(pLikes);
-    blockLikes.appendChild(heart);
-    blockPrice.appendChild(pPrice);
+    const likesAndPriceDOM = `
+        <section class="block-price-likes">
+            <div class="block-likes">
+                <p class="block-likes__text">${totalLikes}</p>
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="block-price">
+                <p class="block-price__text">${photographer.price}€ / jour</p>
+            </div>
+        </section>`
+    
+    const blockLikes = document.querySelector(".block-likes");
+    blockLikes.innerHTML = likesAndPriceDOM;
 }
