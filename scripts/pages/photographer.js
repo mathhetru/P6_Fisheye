@@ -5,6 +5,7 @@ import {
 import { getData } from "../factories/data.js";
 import { modalContact } from "../utils/contactForm.js";
 import { showPriceAndLikes } from "../utils/priceAndLikesBlock.js";
+import { dropDown, sortByPopularity } from "../utils/sortBy.js";
 
 // Function affiche tous les photograhes
 async function displayOnePhotographer(photographer, photographerMedia) {
@@ -12,6 +13,7 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     const PhotographerMain = document.getElementById("main");
     // Pour ce photographe, afficher ses élements sur sa page
     const photographerCard = photographerFactory(photographer);
+
     const singlePhotographe = photographerCard.singlePhotographDOM({
         name: photographerCard.name,
         id: photographerCard.id,
@@ -30,11 +32,13 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     const splitName = photographerCard.name.split(" ");
     const firstName = splitName.shift().replace("-", " ");
 
+    photographerMedia.sort(sortByPopularity);
     // Pour ce photographe, afficher sa galerie de photo sur sa page
-    photographerMedia.forEach((hisGaleryElementsData) => {
-        let media =  hisGaleryElementsData.image || hisGaleryElementsData.video;
+    photographerMedia.forEach((oneElement) => {
+        let media =  oneElement.image || oneElement.video;
 
-        const galeriePanel = galeryFactory(hisGaleryElementsData, firstName, media);
+        const galeriePanel = galeryFactory(oneElement, firstName, media);
+
         galeriePanel.galeryPhotographDOM({
             date: galeriePanel.date,
             id: galeriePanel.id,
@@ -51,6 +55,7 @@ async function displayOnePhotographer(photographer, photographerMedia) {
 
     modalContact(photographer);
     showPriceAndLikes(photographer, photographerMedia);
+    dropDown(photographerCard, photographerMedia);
 }
 
 function findPhotographerById(photographersList, photographerId) {

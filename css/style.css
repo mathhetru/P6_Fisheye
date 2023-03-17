@@ -183,6 +183,12 @@
   width: 100%;
 }
 
+.flex {
+  display: flex;
+  transition: ease-in-out;
+  animation-duration: 0.8s;
+}
+
 .rotate {
   transform: rotate(180deg);
   transition: 0.3s ease-in-out;

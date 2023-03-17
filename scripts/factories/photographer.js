@@ -74,7 +74,7 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
   return article;
 }
 
-function singlePhotographDOM({ name, id, city, country, tagline, price, picture }) {
+function singlePhotographDOM({ name, city, country, tagline, picture }) {
   const photographersHeader = document.querySelector(".photograph-header");
 
   const divInformations = document.createElement("div");
@@ -106,30 +106,15 @@ function singlePhotographDOM({ name, id, city, country, tagline, price, picture 
   photographersHeader.appendChild(buttonContact);
   photographersHeader.appendChild(img);
 
-
-  //! à mettre dans une function à part et faire le sort par tag, revoir css + ajouter toggle
-  const button = document.querySelector(".sortby-select__button");
-
-  button.addEventListener("click", function() {
-    const panel = this.nextElementSibling;
-    const icone = document.querySelector(".fa-chevron-up");
-    if (panel.style.display === "none") {
-      panel.style.display = "flex";
-      icone.classList.add("rotate");
-    } else {
-      panel.style.display = "none";
-      icone.classList.remove("rotate");
-    }
-  });
-
   return photographersHeader;
 }
 
-function galeryPhotographDOM({ date, id, likes, mediaPath, photographeId, price, title }) {
+function galeryPhotographDOM({ id, likes, mediaPath,title }) {
   const photographGalery = document.querySelector(".photograph-galery");
 
   const divGalery = document.createElement("div");
   divGalery.className = "photograph-galery-panel";
+  divGalery.setAttribute("data-id", id);
   
   extensionFactory(mediaPath, title, divGalery);
 

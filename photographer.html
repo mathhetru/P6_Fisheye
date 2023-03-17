@@ -20,30 +20,17 @@
         <header aria-label="header du contenu photographe" class="photograph-header">
         </header>
         <section class="sortby">
-            <!-- <label class="sortby__label"></label>
-            <div class="sortby-full">
-              <div class="sortby-full-tag">
-                <p class="sortby-full__text">Popularité</p>
-                
-              </div>
-              <div class="sortby-full-tag">
-                <p class="sortby-full__text">Date</p>
-              </div>
-              <div class="sortby-full-tag">
-                <p class="sortby-full__text">Titre</p>
-              </div>
-            </div> -->
           <label id="dropdown" class="sortby__label">Trier par</label>
           <div>
-            <button class="sortby-select__button" role="button" aria-haspopup="listbox">
+            <button class="sortby-select__button" role="button" aria-haspopup="listbox" data-categorie="popularity">
               Popularité
               <i class="fas fa-chevron-up"></i>
             </button>
             <div class="sortby-select-panel">
-              <option class="sortby-select-option" role="listbox" aria-labelledby="dropdown">
+              <option class="sortby-select-option" role="listbox" aria-labelledby="dropdown" data-categorie="date">
                 Date
               </option>
-              <option class="sortby-select-option" role="listbox" aria-labelledby="dropdown">
+              <option class="sortby-select-option" role="listbox" aria-labelledby="dropdown" data-categorie="title">
                 Titre
               </option>
             </div>

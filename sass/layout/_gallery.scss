@@ -58,6 +58,11 @@
         }
     }
 }
+.flex{
+    display: flex;
+    transition: ease-in-out;
+    animation-duration: 0.8s;
+}
 .rotate{
     transform: rotate(180deg);
     transition: .3s ease-in-out;
@@ -110,11 +115,3 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
-// @keyframes spin { 
-//     from { 
-//         transform: rotate(0deg); 
-//     } to { 
-//         transform: rotate(180deg); 
-//     }
-// }
