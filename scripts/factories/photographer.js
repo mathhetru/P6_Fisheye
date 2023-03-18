@@ -32,6 +32,24 @@ export function generateGallery(mediasList, photographerCard) {
   document.querySelector(".photograph-galery").innerHTML = mediasListDOM.join('')
 }
 
+export function generatePhotographers(photographers) {
+  const photographersListDOM = photographers.map((onePhotographer) => {
+    const photographerCard = photographerFactory(onePhotographer);
+
+      return photographerCard.indexArticleDOM(
+        photographerCard.name,
+        photographerCard.id,
+        photographerCard.city,
+        photographerCard.country,
+        photographerCard.tagline,
+        photographerCard.price,
+        photographerCard.picture,
+    );
+  });
+
+  document.querySelector(".photographer-section").innerHTML = photographersListDOM.join('')
+}
+
 function extensionFactory(mediaPath, title) {
   let file = mediaPath.split(".");
   let extension = file[1];
@@ -52,8 +70,8 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
 
   const articleDOM = `
   <article class="card-article" aria-label="Fiche du photographe ${name}" data-photographer-id="${id}">
-    <a class="card-article__link" href="${picture}" aria-label="Lien vers la page du photographe ${name}">
-      <img class="card-article__img" src="img/photographers_ID/EllieRoseWilkens.jpg" alt="Portrait du photographe ${name}">
+    <a class="card-article__link" href="./photographer.html?id=${id}" aria-label="Lien vers la page du photographe ${name}">
+      <img class="card-article__img" src="${picture}" alt="Portrait du photographe ${name}">
       <h2 class="card-article-title">${name}</h2>
     </a>
     <div class="card-info">

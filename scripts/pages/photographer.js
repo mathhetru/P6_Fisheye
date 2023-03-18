@@ -25,34 +25,12 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     });
 
     // DOM Element - insérer header dans le main puis le menu trier par
-    // const sortBy = document.querySelector(".sortby");
     const header = document.querySelector('.photograph-header')
-    // PhotographerMain.replaceChild(header, singlePhotographe);
-
     header.innerHTML = singlePhotographe;
 
     photographerMedia.sort(sortByPopularity);
 
     generateGallery(photographerMedia, photographerCard);
-    // Pour ce photographe, afficher sa galerie de photo sur sa page
-    /*photographerMedia.forEach((oneElement) => {
-        let media =  oneElement.image || oneElement.video;
-
-        const galeriePanel = galeryFactory(oneElement, firstName, media);
-
-        galeriePanel.generateMediaDOM({
-            date: galeriePanel.date,
-            id: galeriePanel.id,
-            likes: galeriePanel.likes,
-            mediaPath: galeriePanel.mediaPath,
-            photographeId: galeriePanel.photographeId,
-            price: galeriePanel.price,
-            title: galeriePanel.title
-        });
-    });*/
-
-    // const photographGalery = document.querySelector(".photograph-galery");
-    //PhotographerMain.appendChild(photographGalery);
 
     modalContact(photographer);
     showPriceAndLikes(photographer, photographerMedia);
