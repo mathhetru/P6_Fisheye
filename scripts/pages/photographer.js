@@ -10,7 +10,6 @@ import { dropDown, sortByPopularity } from "../utils/sortBy.js";
 // Function affiche tous les photograhes
 async function displayOnePhotographer(photographer, photographerMedia) {
     // DOM Element - header des pages photographes uniques
-    const PhotographerMain = document.getElementById("main");
     // Pour ce photographe, afficher ses élements sur sa page
     const photographerCard = photographerFactory(photographer);
 
@@ -24,7 +23,7 @@ async function displayOnePhotographer(photographer, photographerMedia) {
         price: photographerCard.price,
     });
 
-    // DOM Element - insérer header dans le main puis le menu trier par
+    // DOM Element - insérer header dans le main 
     const header = document.querySelector('.photograph-header')
     header.innerHTML = singlePhotographe;
 
