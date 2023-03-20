@@ -12,7 +12,7 @@ export function modalContact(photographer) {
 	});
 
 	const modalTitle = document.querySelector(".modal-header__title");
-	modalTitle.innerHTML = "Contactez-moi </br>" + photographer.name;
+	modalTitle.innerHTML = `Contactez-moi </br> ${photographer.name}`
 
 	const inputFirst = document.querySelector(".first");
 	const inputLast = document.querySelector(".last");

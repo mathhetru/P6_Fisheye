@@ -13,6 +13,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: relative;
+        text-align: left;
         width: 160px;
         height: 60px;
         border-radius: 5px;
@@ -27,6 +29,15 @@
         transition: 0.4s;
         cursor: pointer;
     }
+    // .fas{
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+        // position: relative;
+    //     color: $white;
+        // right: 40px;
+    //     cursor: pointer;
+    // }
     &-select-panel{
         display: none;
         position: absolute;

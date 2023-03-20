@@ -6,21 +6,56 @@ let sortOptions = [
     { label: 'Titre', id: 'title' },
 ]
 
-function generateDropdown() {
-    const dropdownDOM = sortOptions.map(option => `
-    <button class="sortby-select__button button" role="button" aria-haspopup="listbox" data-id="${option.id}}">
-        ${option.label}
+function generateDropdown(sortOptions) {
+    const dropdownDOM = `
+    <button class="sortby-select__button" role="button" aria-haspopup="listbox" data-id="${sortOptions[0].id}">
+        ${sortOptions[0].label}
         <i class="fas fa-chevron-up"></i>
-    </button>`);
-    const dropdown = `
-        <ul>
-            ${dropdownDOM.join('')}
-        </ul>
-    `
+    </button>
+    <div class="sortby-select-panel">
+        <button class="sortby-select__option button" role="listbox" aria-labelledby="dropdown" data-id="${sortOptions[1].id}">
+            ${sortOptions[1].label}
+        </button>
+        <button class="sortby-select__option button" role="listbox" aria-labelledby="dropdown" data-id="${sortOptions[2].id}">
+            ${sortOptions[2].label}
+        </button>
+    </div>`
+    return dropdownDOM;
 }
 
+// function generateDropdown() {
+//     const dropdownDOM = sortOptions.map(option => `
+//     <button class="sortby-select__button button" role="button" aria-haspopup="listbox" data-id="${option.id}}">
+//         ${option.label}
+//         <i class="fas fa-chevron-up"></i>
+//     </button>`/*
+//     <div class="sortby-select-panel flex">
+//         <button class="sortby-select__option button" role="listbox" aria-labelledby="dropdown" data-id="${option.id}">
+//             ${option.label}
+//         </button>
+//         <button class="sortby-select__option button" role="listbox" aria-labelledby="dropdown" data-id="${option.id}">
+//             ${option.label}
+//         </button>
+//     </div>*/
+//     );
+//     const dropdown = `
+//         ${dropdownDOM.join('')}
+//     `
+//     return dropdown;
+// }
+
+function generateOptionForDropdown(optionValue) {
+    const clickedOptionIndex = sortOptions.findIndex(o => o.id === optionValue);
+    const clickedActualOption = sortOptions[clickedOptionIndex];
+    const firstOption = sortOptions[0];
+    sortOptions.splice(0, 1, clickedActualOption);
+    sortOptions.splice(clickedOptionIndex, 1, firstOption);
+}
 
 export function dropDown(photographerCard, photographerMedia) {
+
+    document.querySelector('.sortby > div').innerHTML = generateDropdown(sortOptions);
+
     const firstButton = document.querySelector(".sortby-select__button");
     const panel = document.querySelector(".sortby-select-panel");
     const icone = document.querySelector(".fa-chevron-up");
@@ -35,8 +70,6 @@ export function dropDown(photographerCard, photographerMedia) {
         }
     });
 
-    // document.querySelector('.sortby > div').innerHTML = generateDropdown()
-
     const allButtons = document.querySelectorAll(".button");
 
     let optionValue;
@@ -44,25 +77,25 @@ export function dropDown(photographerCard, photographerMedia) {
         option.addEventListener("click", function () {
             optionValue = option.getAttribute("data-id");
             if ( optionValue == "popularity" ) {
-                // const clickedOption = sortOptions.findIndex(o => o.id === optionValue)
-                // sortOptions = 
+                generateOptionForDropdown(optionValue);
                 photographerMedia.sort(sortByPopularity);
+                dropDown(photographerCard, photographerMedia);
             } else if ( optionValue == "date" ) {
-                // const clickedOption = sortOptions.findIndex(o => o.id === optionValue)
-                // sortOptions = 
+                generateOptionForDropdown(optionValue);
                 photographerMedia.sort(sortByDate);
-                result = panel.classList.remove("flex");
-                icone.classList.remove("rotate");
+                // result = panel.classList.remove("flex");
+                // icone.classList.remove("rotate");
+                dropDown(photographerCard, photographerMedia);
             } else if ( optionValue == "title" ) {
+                generateOptionForDropdown(optionValue);
                 photographerMedia.sort(sortByTitle);
-                result = panel.classList.remove("flex");
-                icone.classList.remove("rotate");
+                // result = panel.classList.remove("flex");
+                // icone.classList.remove("rotate");
+                dropDown(photographerCard, photographerMedia);
             } 
             generateGallery(photographerMedia, photographerCard)
         });
     });
-
-    
 }
 
 export function sortByPopularity(a, b) {
