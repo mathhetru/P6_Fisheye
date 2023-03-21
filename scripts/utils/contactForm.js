@@ -1,7 +1,7 @@
 export function modalContact(photographer) {
 	const sectionModalContact = document.getElementById("contact-modal");
 	const modalBtn = document.querySelector(".contact__btn");
-	const closeBtn = document.querySelector(".js-close__btn");
+	const closeBtn = document.querySelector(".js-modal-close__btn");
 
 	modalBtn.addEventListener("click", function () {
 		sectionModalContact.style.display = "block";

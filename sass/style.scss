@@ -1,16 +1,15 @@
 @import "./utils/variables";
-@import "./utils/mixins";
 @import "./components/btn";
-@import "./layout/banner";
-@import "./layout/main-index";
-@import "./layout/header-photographer";
-@import "./layout/gallery";
-@import "./layout/lightbox";
-@import "./layout/form";
-@import "./layout/price";
+@import "./layout/all-header";
+@import "./layout/index-main";
+@import "./layout/photographer-banner";
+@import "./layout/photographer-contact";
+@import "./layout/photographer-gallery";
+@import "./layout/photographer-lightbox";
+@import "./layout/photographer-price";
 
 
-// MAIN ELEMENTS
+//* MAIN ELEMENTS
 * {
     box-sizing: border-box;
     font-family: "DM Sans", sans-serif;
