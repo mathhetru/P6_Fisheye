@@ -1,5 +1,4 @@
 #contact-modal {
-    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -9,7 +8,12 @@
     overflow: auto;
     background-color: rgba(26, 39, 156, 0.4);
 }
-
+.contact-close{
+    display: none;
+}
+.contact-open{
+    display: block;
+}
 .modal {
     border-radius: 5px;
     background-color: #DB8876;

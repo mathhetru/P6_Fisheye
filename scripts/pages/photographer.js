@@ -6,6 +6,7 @@ import { getData } from "../factories/data.js";
 import { modalContact } from "../utils/contactForm.js";
 import { showPriceAndLikes } from "../utils/priceAndLikesBlock.js";
 import { dropDown, sortByPopularity } from "../utils/sortBy.js";
+import { modalLightBox } from "../utils/lightBox.js";
 
 // Function affiche tous les photograhes
 async function displayOnePhotographer(photographer, photographerMedia) {
@@ -29,11 +30,11 @@ async function displayOnePhotographer(photographer, photographerMedia) {
 
     photographerMedia.sort(sortByPopularity);
 
-    generateGallery(photographerMedia, photographerCard);
-
+    generateGallery(photographerMedia);
     modalContact(photographer);
-    showPriceAndLikes(photographer, photographerMedia);
     dropDown(photographerCard, photographerMedia);
+    showPriceAndLikes(photographer, photographerMedia);
+    modalLightBox(photographer, photographerMedia);
 }
 
 function findPhotographerById(photographersList, photographerId) {
@@ -42,10 +43,17 @@ function findPhotographerById(photographersList, photographerId) {
     );
 }
 
-function findPhotographerMedias(mediaList, photographerId) {
+function findPhotographerMedias(mediaList, photographer) {
     return mediaList.filter(
-        (element) => element.photographerId == photographerId
-    )
+        (element) => element.photographerId == photographer.id
+    ).map(media => {
+        const photographerName = photographer.name.split(" ").shift().replace("-", " ");
+        const mediaSubPath = media.video || media.image
+        return {
+            ...media,
+            path: `img/${photographerName}/${mediaSubPath}`
+        }
+    })
 }
 
 async function init() {
@@ -53,7 +61,9 @@ async function init() {
     const url = new URL(window.location.href);
     const photographerId = url.searchParams.get("id");
     const photographer = findPhotographerById(data.photographers, photographerId);
-    const photographerMedia = findPhotographerMedias(data.media, photographerId);
+    const photographerMedia = findPhotographerMedias(data.media, photographer);
+
+    console.log(photographerMedia)
 
     displayOnePhotographer(photographer, photographerMedia);
 }

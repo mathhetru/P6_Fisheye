@@ -1,14 +1,16 @@
 export function modalContact(photographer) {
-	const sectionModalContact = document.getElementById("contact-modal");
+	const getModalContact = document.getElementById("contact-modal");
 	const modalBtn = document.querySelector(".contact__btn");
 	const closeBtn = document.querySelector(".js-modal-close__btn");
 
 	modalBtn.addEventListener("click", function () {
-		sectionModalContact.style.display = "block";
+		getModalContact.classList.remove("contact-close");
+		getModalContact.classList.add("contact-open");
 	});
 
 	closeBtn.addEventListener("click", function () {
-		sectionModalContact.style.display = "none";
+		getModalContact.classList.add("contact-close");
+		getModalContact.classList.remove("contact-open");
 	});
 
 	const modalTitle = document.querySelector(".modal-header__title");
@@ -41,7 +43,7 @@ export function modalContact(photographer) {
 	
 	form.addEventListener("submit", function (e) {
 		e.preventDefault();
-		sectionModalContact.style.display = "none";
+		getModalContact.classList.remove("contact-open");
 		form.reset();
 	});
 };

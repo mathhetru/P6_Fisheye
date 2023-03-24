@@ -2,7 +2,7 @@ export function showPriceAndLikes(photographer, photographerMedia) {
 
     const hearts = document.querySelectorAll('.photograph-galery-content-hearts')
 
-    hearts.forEach(function (heart) {
+    hearts.forEach(heart => {
         const text = heart.querySelector('.photograph-galery-content-hearts__text')
         const likes = Number(text.textContent)
         const icon = heart.querySelector('.fa-heart')

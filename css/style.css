@@ -125,7 +125,6 @@
 }
 
 #contact-modal {
-  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -134,6 +133,14 @@
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+}
+
+.contact-close {
+  display: none;
+}
+
+.contact-open {
+  display: block;
 }
 
 .modal {
@@ -293,10 +300,7 @@
   background-color: #901C1C;
   border: none;
   outline: none;
-  /* text-align: left; */
-  /* margin: 16px 0; */
   padding: 0 20px;
-  /* padding: 16px 0; */
   text-align: left;
   font-size: 15px;
   font-weight: 700;
@@ -357,6 +361,7 @@
   font-size: 20px;
 }
 .photograph-galery-content__media {
+  cursor: pointer;
   width: 100%;
   height: 300px;
   object-fit: cover;
@@ -383,7 +388,6 @@
   }
 }
 #lightbox-modal {
-  display: block;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -396,6 +400,10 @@
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+.lightbox-open {
+  display: block;
+}
+
 .lightbox {
   border-radius: 5px;
   background-color: #FFFFFF;
@@ -405,6 +413,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  justify-content: center;
   margin: auto;
   transform: translateY(5%);
   animation-name: modalopen;
@@ -412,12 +421,45 @@
 }
 .lightbox-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-start;
   width: 100%;
 }
 .lightbox-header__img {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  margin: 0 30px;
   cursor: pointer;
+}
+.lightbox-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+}
+.lightbox-main .fas {
+  color: #901C1C;
+  font-size: 2em;
+  margin: 0 32px;
+  cursor: pointer;
+}
+.lightbox-main__img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+  border-radius: 5px;
+  overflow-clip-margin: unset;
+}
+.lightbox-footer {
+  width: 70%;
+}
+.lightbox-footer__title {
+  margin: 20px 0 0 0;
+  color: #901C1C;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
 }
 
 .block-price-likes {

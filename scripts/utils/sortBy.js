@@ -1,4 +1,6 @@
 import { generateGallery } from "../factories/photographer.js";
+import { modalLightBox } from "../utils/lightBox.js";
+import { showPriceAndLikes } from "../utils/priceAndLikesBlock.js";
 
 let sortOptions = [
     { label: 'Popularité', id: 'popularity' },
@@ -23,33 +25,15 @@ function generateDropdown(sortOptions) {
     return dropdownDOM;
 }
 
-// function generateDropdown() {
-//     const dropdownDOM = sortOptions.map(option => `
-//     <button class="sortby-select__button button" role="button" aria-haspopup="listbox" data-id="${option.id}}">
-//         ${option.label}
-//         <i class="fas fa-chevron-up"></i>
-//     </button>`/*
-//     <div class="sortby-select-panel flex">
-//         <button class="sortby-select__option button" role="listbox" aria-labelledby="dropdown" data-id="${option.id}">
-//             ${option.label}
-//         </button>
-//         <button class="sortby-select__option button" role="listbox" aria-labelledby="dropdown" data-id="${option.id}">
-//             ${option.label}
-//         </button>
-//     </div>*/
-//     );
-//     const dropdown = `
-//         ${dropdownDOM.join('')}
-//     `
-//     return dropdown;
-// }
-
 function generateOptionForDropdown(optionValue) {
-    const clickedOptionIndex = sortOptions.findIndex(o => o.id === optionValue);
+    /*const clickedOptionIndex = sortOptions.findIndex(o => o.id === optionValue);
     const clickedActualOption = sortOptions[clickedOptionIndex];
     const firstOption = sortOptions[0];
     sortOptions.splice(0, 1, clickedActualOption);
-    sortOptions.splice(clickedOptionIndex, 1, firstOption);
+    sortOptions.splice(clickedOptionIndex, 1, firstOption);*/
+    const clickedOption = sortOptions.find(o => o.id === optionValue)
+    const otherOptions = sortOptions.filter(o => o.id !== optionValue)
+    sortOptions = [clickedOption, ...otherOptions]
 }
 
 export function dropDown(photographerCard, photographerMedia) {
@@ -83,17 +67,15 @@ export function dropDown(photographerCard, photographerMedia) {
             } else if ( optionValue == "date" ) {
                 generateOptionForDropdown(optionValue);
                 photographerMedia.sort(sortByDate);
-                // result = panel.classList.remove("flex");
-                // icone.classList.remove("rotate");
                 dropDown(photographerCard, photographerMedia);
             } else if ( optionValue == "title" ) {
                 generateOptionForDropdown(optionValue);
                 photographerMedia.sort(sortByTitle);
-                // result = panel.classList.remove("flex");
-                // icone.classList.remove("rotate");
                 dropDown(photographerCard, photographerMedia);
             } 
-            generateGallery(photographerMedia, photographerCard)
+            generateGallery(photographerMedia, photographerCard);
+            showPriceAndLikes(photographerCard, photographerMedia);
+            modalLightBox(photographerMedia);
         });
     });
 }
