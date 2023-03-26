@@ -34,7 +34,7 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     modalContact(photographer);
     dropDown(photographerCard, photographerMedia);
     showPriceAndLikes(photographer, photographerMedia);
-    modalLightBox(photographer, photographerMedia);
+    modalLightBox(photographerMedia);
 }
 
 function findPhotographerById(photographersList, photographerId) {
@@ -62,9 +62,6 @@ async function init() {
     const photographerId = url.searchParams.get("id");
     const photographer = findPhotographerById(data.photographers, photographerId);
     const photographerMedia = findPhotographerMedias(data.media, photographer);
-
-    console.log(photographerMedia)
-
     displayOnePhotographer(photographer, photographerMedia);
 }
 

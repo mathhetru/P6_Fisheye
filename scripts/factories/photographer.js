@@ -1,3 +1,5 @@
+import { extensionFactory } from "../utils/extension.js";
+
 export function photographerFactory(photographer) {
   const { name, id, city, country, tagline, price, portrait } = photographer;
   const picture = `img/photographers_ID/${portrait}`;
@@ -24,8 +26,6 @@ export function generateGallery(mediasList) {
       });
   });
   document.querySelector(".photograph-galery").innerHTML = mediasListDOM.join('')
-
-
 }
 
 export function generatePhotographers(photographers) {
@@ -42,22 +42,7 @@ export function generatePhotographers(photographers) {
         photographerCard.picture,
     );
   });
-
   document.querySelector(".photographer-section").innerHTML = photographersListDOM.join('')
-}
-//*! mettre dans un fichier à part et l'importer ici et dans lightbox
-function extensionFactory(mediaPath, title) {
-  let file = mediaPath.split(".");
-  let extension = file[1];
-  switch (extension) {
-    case "jpg":
-    case "jpeg":
-      return `<img class="photograph-galery-content__media" src="${mediaPath}" alt="${title}">`
-    case "mp4":
-      return `<video class="photograph-galery-content__media" alt="${title}">
-        <source src="${mediaPath}" />
-      </video>`
-  }
 }
 
 function indexArticleDOM(name, id, city, country, tagline, price, picture) {
@@ -91,7 +76,7 @@ function singlePhotographDOM({ name, city, country, tagline, picture }) {
 function generateMediaDOM({ id, likes, mediaPath, title }) {
   const media = `
     <div class="photograph-galery-panel" data-id="${id}">
-      ${extensionFactory(mediaPath, title)}
+      ${extensionFactory(mediaPath, title, "photograph-galery-content__media")}
       <div class="photograph-galery-content">
         <h2 class="photograph-galery-content__title">${title}</h2>
         <div class="photograph-galery-content-hearts">

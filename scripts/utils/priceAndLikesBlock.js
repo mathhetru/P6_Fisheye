@@ -1,6 +1,5 @@
 export function showPriceAndLikes(photographer, photographerMedia) {
-
-    const hearts = document.querySelectorAll('.photograph-galery-content-hearts')
+    const hearts = document.querySelectorAll('.photograph-galery-content-hearts');
 
     hearts.forEach(heart => {
         const text = heart.querySelector('.photograph-galery-content-hearts__text')
@@ -32,7 +31,6 @@ export function showPriceAndLikes(photographer, photographerMedia) {
                 <p class="block-price__text">${photographer.price}€ / jour</p>
             </div>
         </section>`
-    
     const blockLikes = document.querySelector(".block-likes");
     blockLikes.innerHTML = likesAndPriceDOM;
 }

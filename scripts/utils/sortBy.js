@@ -31,13 +31,12 @@ function generateOptionForDropdown(optionValue) {
     const firstOption = sortOptions[0];
     sortOptions.splice(0, 1, clickedActualOption);
     sortOptions.splice(clickedOptionIndex, 1, firstOption);*/
-    const clickedOption = sortOptions.find(o => o.id === optionValue)
-    const otherOptions = sortOptions.filter(o => o.id !== optionValue)
-    sortOptions = [clickedOption, ...otherOptions]
+    const clickedOption = sortOptions.find(o => o.id === optionValue);
+    const otherOptions = sortOptions.filter(o => o.id !== optionValue);
+    sortOptions = [clickedOption, ...otherOptions];
 }
 
 export function dropDown(photographerCard, photographerMedia) {
-
     document.querySelector('.sortby > div').innerHTML = generateDropdown(sortOptions);
 
     const firstButton = document.querySelector(".sortby-select__button");
@@ -56,10 +55,10 @@ export function dropDown(photographerCard, photographerMedia) {
 
     const allButtons = document.querySelectorAll(".button");
 
-    let optionValue;
+    // let optionValue;
     allButtons.forEach((option) => {
         option.addEventListener("click", function () {
-            optionValue = option.getAttribute("data-id");
+            const optionValue = option.getAttribute("data-id");
             if ( optionValue == "popularity" ) {
                 generateOptionForDropdown(optionValue);
                 photographerMedia.sort(sortByPopularity);
