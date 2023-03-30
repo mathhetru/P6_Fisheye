@@ -6,12 +6,22 @@ export function modalContact(photographer) {
 	modalBtn.addEventListener("click", function () {
 		getModalContact.classList.remove("contact-close");
 		getModalContact.classList.add("contact-open");
+		getModalContact.setAttribute('aria-hidden', 'true');
 	});
 
 	closeBtn.addEventListener("click", function () {
 		getModalContact.classList.add("contact-close");
 		getModalContact.classList.remove("contact-open");
+		getModalContact.setAttribute('aria-hidden', 'false');
 	});
+
+	document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            getModalContact.classList.add("contact-close");
+			getModalContact.classList.remove("contact-open");
+			getModalContact.setAttribute('aria-hidden', 'false');
+        }
+    });
 
 	const modalTitle = document.querySelector(".modal-header__title");
 	modalTitle.innerHTML = `Contactez-moi </br> ${photographer.name}`
