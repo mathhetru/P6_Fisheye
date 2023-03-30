@@ -46,11 +46,11 @@
         </section>
       </main>
       
-      <section id="contact-modal" class="contact-close">
+      <section id="contact-modal" aria-hidden="true" class="contact-close"  role="dialog" aria-describedby="modalContactTitle">
         <div class="modal">
           <header aria-label="header du formulaire" class="modal-header">
-            <h2 class="modal-header__title"></h2>
-            <img class="modal-header__img js-modal-close__btn" src="assets/icons/close.svg"/>
+            <h2 id="modalContactTitle" class="modal-header__title"></h2>
+            <img role="button" class="modal-header__img js-modal-close__btn" src="assets/icons/close.svg"/>
           </header>
           <form id="form" class="modal-form">
             <div class="modal-block">
@@ -74,19 +74,8 @@
         </div>
       </section>
 
-      <dialog id="lightbox-modal">
+      <dialog id="lightbox-modal" aria-hidden="true" role="dialog">
         <div class="lightbox">
-          <!-- <header class="lightbox-header">
-            <img class="lightbox-header__img js-lightbox-close__btn" src="assets/icons/close-red.svg"/>
-          </header>
-          <main class="lightbox-main">
-            <i class="fas fa-chevron-left js-lightbox-left__btn"></i>
-            <img class="lightbox-main__img" src="img/Nabeel/Portrait_Shaw.jpg" alt="Benevides Wedding">
-            <i class="fas fa-chevron-right js-lightbox-right__btn"></i>
-          </main>
-          <footer class="lightbox-footer">
-            <p class="lightbox-footer__title">Titre</p>
-          </footer> -->
         </div>
       </dialog>
 
