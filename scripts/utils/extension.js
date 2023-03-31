@@ -4,9 +4,9 @@ export function extensionFactory(mediaPath, title, className) {
     switch (extension) {
         case "jpg":
         case "jpeg":
-            return `<img class=${className} src="${mediaPath}" alt="${title}">`
+            return `<img tabindex="0" role="link" class=${className} src="${mediaPath}" alt="photographie nommée ${title}">`
         case "mp4":
-            return `<video class=${className} alt="${title}" autoplay loop>
+            return `<video tabindex="0" role="link" class=${className} alt="Vidéo nommée ${title}" autoplay loop>
                 <source src="${mediaPath}" type="video/mp4">
             </video>`
         }

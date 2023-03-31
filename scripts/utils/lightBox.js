@@ -51,7 +51,8 @@ export function modalLightBox(photographerMedia) {
 
             // console.log(pictureIndex, photographerMedia.length);
             if (pictureIndex !== 0) {
-                // console.log(pictureIndex, photographerMedia.length);
+                console.log(pictureIndex, photographerMedia.length);
+                console.log(i);
                 const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
                 lightBox.innerHTML = generateElementInLightBox(picture);
             } else {
@@ -76,10 +77,6 @@ export function modalLightBox(photographerMedia) {
             getLightbox.classList.remove("lightbox-open");
             getLightbox.setAttribute('aria-hidden', 'false');
         });
-        // closeBtn.onkeydown = logKey;
-        // function logKey(e) {
-        //     getLightbox.classList.remove("lightbox-open");
-        // }
     }
 
     document.addEventListener("keydown", (event) => {
@@ -147,15 +144,15 @@ export function modalLightBox(photographerMedia) {
     function generateElementInLightBox(picture) {
         const media = `
             <header class="lightbox-header">
-                <img role="button" class="lightbox-header__img js-lightbox-close__btn" src="assets/icons/close-red.svg"/>
+                <img tabindex="0" role="button" alt="bouton fermer la lightbox" class="lightbox-header__img js-lightbox-close__btn" src="assets/icons/close-red.svg"/>
             </header>
             <section class="lightbox-main">
-                <i role="button" aria-hidden="true" class="fas fa-chevron-left js-lightbox-left__btn"></i>
+                <i tabindex="0" role="button" alt="bouton pour passer à l'image précédente" aria-hidden="true" class="fas fa-chevron-left js-lightbox-left__btn"></i>
                     ${extensionFactory(picture.path, picture.title, "lightbox-main__img")}
-                <i role="button" aria-hidden="true" class="fas fa-chevron-right js-lightbox-right__btn"></i>
+                <i tabindex="0" role="button" alt="bouton pour passer à l'image suivante" aria-hidden="true" class="fas fa-chevron-right js-lightbox-right__btn"></i>
             </section>
             <footer class="lightbox-footer">
-                <p class="lightbox-footer__title">${picture.title}</p>
+                <p tabindex="0" class="lightbox-footer__title">${picture.title}</p>
             </footer>
         `
         return media

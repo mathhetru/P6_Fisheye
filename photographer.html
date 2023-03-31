@@ -14,7 +14,7 @@
     <div class="screen-size">
 
       <header class="header" aria-label="header de la page">
-        <a href="index.html" class="header__link"><img src="assets/images/logo.png" class="header-logo"/></a>
+        <a href="index.html" class="header__link"><img src="assets/images/logo.png" class="header-logo" alt="Logo de Fisheye - Lien vers page d'accueil"/></a>
       </header>
       
       <main id="main">
@@ -36,9 +36,9 @@
               </button> -->
           </div>
         </section>
-        <section class="photograph-galery">
+        <section tabindex="0" class="photograph-galery">
         </section>
-        <section class="block-price-likes">
+        <section tabindex="0" class="block-price-likes">
           <div class="block-likes">
           </div>
           <div class="block-price">
@@ -46,30 +46,30 @@
         </section>
       </main>
       
-      <section id="contact-modal" aria-hidden="true" class="contact-close"  role="dialog" aria-describedby="modalContactTitle">
+      <section tabindex="0" id="contact-modal" aria-hidden="true" class="contact-close"  role="dialog" aria-describedby="modalContactTitle">
         <div class="modal">
           <header aria-label="header du formulaire" class="modal-header">
-            <h2 id="modalContactTitle" class="modal-header__title"></h2>
-            <img role="button" class="modal-header__img js-modal-close__btn" src="assets/icons/close.svg"/>
+            <h2 tabindex="0" id="modalContactTitle" class="modal-header__title"></h2>
+            <img tabindex="0" role="button" class="modal-header__img js-modal-close__btn" src="assets/icons/close.svg" alt="bouton fermer le formulaire"/>
           </header>
           <form id="form" class="modal-form">
             <div class="modal-block">
-              <label class="modal-label__text">Prénom</label>
-              <input class="modal-input first" type="text" minlength="2">
+              <label tabindex="0" class="modal-label__text" for="firstname">Prénom</label>
+              <input tabindex="0" class="modal-input first" id="firstname" type="text" minlength="2">
             </div>
             <div class="modal-block">
-              <label class="modal-label__text">Nom</label>
-              <input class="modal-input last" type="text" minlength="2">
+              <label tabindex="0" class="modal-label__text" for="lastname">Nom</label>
+              <input tabindex="0" class="modal-input last" id="lastname" type="text" minlength="2">
             </div>
             <div class="modal-block">
-              <label class="modal-label__text">Email</label>
-              <input class="modal-input email" type="email" minlength="2">
+              <label tabindex="0" class="modal-label__text" for="email">Email</label>
+              <input tabindex="0" class="modal-input email" id="email" type="email" minlength="2">
             </div>
             <div class="modal-block">
-              <label class="modal-label__text">Votre message</label>
-              <textarea class="modal-textarea msg"></textarea>
+              <label tabindex="0" class="modal-label__text" for="message">Votre message</label>
+              <textarea tabindex="0" class="modal-textarea msg" id="message"></textarea>
             </div>
-            <input class="modal-send__btn" type="submit" value="Envoyer">
+            <input tabindex="0" class="modal-send__btn" type="submit" value="Envoyer">
           </form>
         </div>
       </section>
