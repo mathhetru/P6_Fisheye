@@ -50,12 +50,12 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
   <article class="card-article" aria-label="Fiche du photographe ${name}" data-photographer-id="${id}">
     <a class="card-article__link" href="./photographer.html?id=${id}" aria-label="Lien vers la page du photographe ${name}">
       <img class="card-article__img" src="${picture}" alt="Portrait du photographe ${name}">
-      <h2 class="card-article-title">${name}</h2>
+      <h2 tabindex="0" arialabel="Nom et prénom de ce photographe" class="card-article-title">${name}</h2>
     </a>
     <div class="card-info">
-      <p class="card-info-city">${city}, ${country}</p>
-      <p class="card-info-tag">${tagline}</p>
-      <p class="card-info-price">${price}€/jour</p>
+      <p tabindex="0" arialabel="Lieu de travail pour ce photographe" class="card-info-city">${city}, ${country}</p>
+      <p tabindex="0" arialabel="Tagline de ce photographe" class="card-info-tag">${tagline}</p>
+      <p tabindex="0" arialabel="Tarif journalier pour ce photographe" class="card-info-price">${price}€/jour</p>
     </div>
   </article>`
   return articleDOM;
@@ -64,9 +64,9 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
 function singlePhotographDOM({ name, city, country, tagline, picture }) {
   const photographersHeaderDOM = `
     <div class="photograph-header-infos">
-      <h1 tabindex="0"  class="photograph-header-infos__title">${name}</h1>
-      <p tabindex="0" class="photograph-header-infos__city">${city}, ${country}</p>
-      <p tabindex="0" class="photograph-header-infos__tag">${tagline}</p>
+      <h1 tabindex="0" arialabel="Nom et prénom de ce photographe" class="photograph-header-infos__title">${name}</h1>
+      <p tabindex="0" arialabel="Lieu de travail pour ce photographe" class="photograph-header-infos__city">${city}, ${country}</p>
+      <p tabindex="0" arialabel="Tagline de ce photographe" class="photograph-header-infos__tag">${tagline}</p>
     </div>
     <button class="contact__btn" tabindex="0" aria-label="Bouton pour ouvrir formulaire de contact">Contactez-moi</button>
     <img class="photograph-header__img" src="${picture}" alt="Portrait du photographe ${name}">` 
@@ -78,9 +78,9 @@ function generateMediaDOM({ id, likes, mediaPath, title }) {
     <div class="photograph-galery-panel" data-id="${id}">
       ${extensionFactory(mediaPath, title, "photograph-galery-content__media")}
       <div class="photograph-galery-content">
-        <h2 tabindex="0" class="photograph-galery-content__title">${title}</h2>
+        <h2 tabindex="0" arialabel="Titre de la publication" class="photograph-galery-content__title">${title}</h2>
         <div class="photograph-galery-content-hearts">
-          <p tabindex="0" class="photograph-galery-content-hearts__text">${likes}</p>
+          <p tabindex="0" arialabel="nombre de likes pour cette publication" class="photograph-galery-content-hearts__text">${likes}</p>
           <i arialabel="bouton pour liker la publication ${title}" aria-pressed="false" tabindex="0" class="fas fa-heart"></i>
         </div>
       </div>

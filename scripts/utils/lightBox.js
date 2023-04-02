@@ -19,6 +19,21 @@ export function modalLightBox(photographerMedia) {
             handleNavigation(pictureIndex);     
             closeLightBox();
         });
+
+        media.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                getLightbox.classList.add("lightbox-open");
+                getLightbox.setAttribute('aria-hidden', 'true');
+                pictureId = media.parentElement.getAttribute("data-id");
+    
+                const picture = findPictureClicked(photographerMedia, pictureId);
+                const pictureIndex = findIndexOfPictureClicked(photographerMedia, pictureId);
+                lightBox.innerHTML = generateElementInLightBox(picture);
+    
+                handleNavigation(pictureIndex);     
+                closeLightBox();
+            };
+        });
     });
 
     function handleNavigation(initialIndex) {
@@ -27,79 +42,41 @@ export function modalLightBox(photographerMedia) {
         let i = initialIndex
 
         rightArrow.addEventListener("click", function () {
-            if (i === photographerMedia.length - 1) {
-                i = 0
-             } else {
-                i += 1;
-            }
+            i === photographerMedia.length - 1 ? i = 0 : i += 1;
+            // if (i === photographerMedia.length - 1) {
+            //     i = 0
+            // } else {
+            //     i += 1;
+            // }
             const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
             updatePictureInLightbox(picture);
         });
 
         leftArrow.addEventListener("click", function () {
-            if (i === 0) {
-                i = photographerMedia.length - 1;
-            } else {
-                i -= 1
-            }
-            /*if (i !== 0) {
-                i--
-            } else {
-                i = photographerMedia.length - 1;
-            }*/
-            
+            i === 0 ? i = photographerMedia.length - 1 : i -= 1;
+            // if (i === 0) {
+            //     i = photographerMedia.length - 1;
+            // } else {
+            //     i -= 1
+            // }
             const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
             updatePictureInLightbox(picture);
         });
-    }
-    
-	function clickOnRightArrow(pictureIndex) {
-        const rightArrow = document.querySelector('.js-lightbox-right__btn');
-        let i = pictureIndex// = pictureIndex + 1;
 
-        rightArrow.addEventListener("click", function () {
-            
-
-            if (i !== photographerMedia.length - 1) {
-                i++
-                // console.log(pictureIndex, photographerMedia.length);
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowRight") {
+                i === photographerMedia.length - 1 ? i = 0 : i += 1;
                 const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
                 updatePictureInLightbox(picture);
-            } else {
-                //pictureIndex = 0;
-                i = 0;
+            };
+
+            if (event.key === "ArrowLeft") {
+                i === 0 ? i = photographerMedia.length - 1 : i -= 1;
                 const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
                 updatePictureInLightbox(picture);
-            }
-
-            /*clickOnRightArrow(i);
-            clickOnLeftArrow(i);
-            closeLightBox();*/
+            };
         });
     }
-
-    function clickOnLeftArrow(pictureIndex) {
-        const leftArrow = document.querySelector('.js-lightbox-left__btn');
-        let i = pictureIndex// = pictureIndex - 1;
-
-        leftArrow.addEventListener("click", function () {
-
-            if (i !== 0) {
-                i--
-                const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
-                updatePictureInLightbox(picture);
-            } else {
-                i = photographerMedia.length - 1;
-                const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
-                updatePictureInLightbox(picture);
-            }
-
-            /*clickOnRightArrow(i);
-            clickOnLeftArrow(i);
-            closeLightBox();*/
-        });
-    }
-
 
     function closeLightBox() {
         const closeBtn = document.querySelector(".js-lightbox-close__btn");
@@ -107,56 +84,13 @@ export function modalLightBox(photographerMedia) {
             getLightbox.classList.remove("lightbox-open");
             getLightbox.setAttribute('aria-hidden', 'false');
         });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                getLightbox.classList.remove("lightbox-open");
+            };
+        });
     }
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            getLightbox.classList.remove("lightbox-open");
-        };
-        if (event.key === "ArrowRight") {
-            const pictureIndex = findIndexOfPictureClicked(photographerMedia, pictureId);
-
-            let i = pictureIndex + 1;
-
-            if (pictureIndex !== photographerMedia.length) {
-                // console.log(pictureIndex, photographerMedia.length);
-                const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
-                lightBox.innerHTML = generateElementInLightBox(picture);
-            } else {
-                pictureIndex = 0;
-                i = 0;
-                const picture = findPictureClicked(photographerMedia, photographerMedia[0].id);
-                lightBox.innerHTML = generateElementInLightBox(picture);
-            }
-
-            clickOnRightArrow(i);
-            clickOnLeftArrow(i);
-            closeLightBox();
-        };
-        if (event.key === "ArrowLeft") {
-            const pictureIndex = findIndexOfPictureClicked(photographerMedia, pictureId);
-
-            let i = pictureIndex - 1;
-
-            // console.log(pictureIndex, photographerMedia.length);
-            if (pictureIndex !== 0) {
-                // console.log(pictureIndex, photographerMedia.length);
-                const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
-                lightBox.innerHTML = generateElementInLightBox(picture);
-            } else {
-                // console.log(pictureIndex, photographerMedia.length);
-                // console.log("PROUT");
-                pictureIndex = photographerMedia.length;
-                i = photographerMedia.length;
-                const picture = findPictureClicked(photographerMedia, photographerMedia[0].id);
-                lightBox.innerHTML = generateElementInLightBox(picture);
-            }
-
-            clickOnRightArrow(i);
-            clickOnLeftArrow(i);
-            closeLightBox();
-        };
-    });
 
 
     function findIndexOfPictureClicked(photographerMedia, pictureId) {
@@ -179,12 +113,12 @@ export function modalLightBox(photographerMedia) {
             <section class="lightbox-main">
                 <i tabindex="0" role="button" alt="bouton pour passer à l'image précédente" aria-hidden="true" class="fas fa-chevron-left js-lightbox-left__btn"></i>
                 <div id="lightbox-picture">
-                ${extensionFactory(picture.path, picture.title, "lightbox-main__img")}
+                    ${extensionFactory(picture.path, picture.title, "lightbox-main__img")}
                 </div>
                 <i tabindex="0" role="button" alt="bouton pour passer à l'image suivante" aria-hidden="true" class="fas fa-chevron-right js-lightbox-right__btn"></i>
             </section>
             <footer class="lightbox-footer">
-                <p tabindex="0" class="lightbox-footer__title">${picture.title}</p>
+                <p tabindex="0" arialabel="Titre de cette publication" class="lightbox-footer__title">${picture.title}</p>
             </footer>
         `
         return media
@@ -194,6 +128,4 @@ export function modalLightBox(photographerMedia) {
         const pictureContainer = document.querySelector('#lightbox-picture')
         pictureContainer.innerHTML = extensionFactory(picture.path, picture.title, "lightbox-main__img")
     }
-	// const modalTitle = document.querySelector(".modal-header__title");
-	// modalTitle.innerHTML = `Contactez-moi </br> ${photographer.name}`
 };
