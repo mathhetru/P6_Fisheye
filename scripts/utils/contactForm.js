@@ -54,6 +54,7 @@ export function modalContact(photographer) {
 	form.addEventListener("submit", function (e) {
 		e.preventDefault();
 		getModalContact.classList.remove("contact-open");
+		getModalContact.classList.add("contact-close");
 		form.reset();
 	});
 };

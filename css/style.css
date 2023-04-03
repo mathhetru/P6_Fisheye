@@ -295,7 +295,7 @@
   overflow: hidden;
 }
 .sortby-select__option {
-  z-index: 500;
+  z-index: 10;
   color: #FFFFFF;
   background-color: #901C1C;
   border: none;
@@ -389,7 +389,7 @@
 }
 #lightbox-modal {
   position: fixed;
-  z-index: 1;
+  z-index: 11;
   left: 0;
   top: 0;
   height: 100%;

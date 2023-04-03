@@ -8,33 +8,28 @@ export function modalLightBox(photographerMedia) {
     let pictureId;
     AllMedia.forEach(media => {
         media.addEventListener("click", function () {
-            getLightbox.classList.add("lightbox-open");
-            getLightbox.setAttribute('aria-hidden', 'true');
-            pictureId = media.parentElement.getAttribute("data-id");
-
-            const picture = findPictureClicked(photographerMedia, pictureId);
-            const pictureIndex = findIndexOfPictureClicked(photographerMedia, pictureId);
-            lightBox.innerHTML = generateElementInLightBox(picture);
-
-            handleNavigation(pictureIndex);     
-            closeLightBox();
+            openLightBox(media);
         });
 
         media.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
-                getLightbox.classList.add("lightbox-open");
-                getLightbox.setAttribute('aria-hidden', 'true');
-                pictureId = media.parentElement.getAttribute("data-id");
-    
-                const picture = findPictureClicked(photographerMedia, pictureId);
-                const pictureIndex = findIndexOfPictureClicked(photographerMedia, pictureId);
-                lightBox.innerHTML = generateElementInLightBox(picture);
-    
-                handleNavigation(pictureIndex);     
-                closeLightBox();
-            };
+                openLightBox(media);
+            }
         });
     });
+
+    function openLightBox(media) {
+        getLightbox.classList.add("lightbox-open");
+        getLightbox.setAttribute('aria-hidden', 'true');
+        pictureId = media.parentElement.getAttribute("data-id");
+
+        const picture = findPictureClicked(photographerMedia, pictureId);
+        const pictureIndex = findIndexOfPictureClicked(photographerMedia, pictureId);
+        lightBox.innerHTML = generateElementInLightBox(picture);
+
+        handleNavigation(pictureIndex);     
+        closeLightBox();
+    }
 
     function handleNavigation(initialIndex) {
         const rightArrow = document.querySelector('.js-lightbox-right__btn');

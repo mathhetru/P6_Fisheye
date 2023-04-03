@@ -13,6 +13,11 @@ export function showPriceAndLikes(photographer, photographerMedia) {
             icon.removeEventListener("click", onClick);
         }
         icon.addEventListener("click", onClick);
+        icon.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                onClick();
+            }
+        });
     })
 
     const allLikes = photographerMedia.map(photographerMedia  => photographerMedia.likes);
