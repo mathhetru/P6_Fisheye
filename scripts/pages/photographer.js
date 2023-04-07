@@ -25,7 +25,7 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     });
 
     // DOM Element - insérer header dans le main 
-    const header = document.querySelector('.photograph-header')
+    const header = document.querySelector(".photograph-header");
     header.innerHTML = singlePhotographe;
 
     photographerMedia.sort(sortByPopularity);
@@ -48,12 +48,12 @@ function findPhotographerMedias(mediaList, photographer) {
         (element) => element.photographerId == photographer.id
     ).map(media => {
         const photographerName = photographer.name.split(" ").shift().replace("-", " ");
-        const mediaSubPath = media.video || media.image
+        const mediaSubPath = media.video || media.image;
         return {
             ...media,
             path: `img/${photographerName}/${mediaSubPath}`
-        }
-    })
+        };
+    });
 }
 
 async function init() {

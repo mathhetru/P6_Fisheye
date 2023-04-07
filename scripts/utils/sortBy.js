@@ -3,10 +3,10 @@ import { modalLightBox } from "../utils/lightBox.js";
 import { showPriceAndLikes } from "../utils/priceAndLikesBlock.js";
 
 let sortOptions = [
-    { label: 'Popularité', id: 'popularity' },
-    { label: 'Date', id: 'date' },
-    { label: 'Titre', id: 'title' },
-]
+    { label: "Popularité", id: "popularity" },
+    { label: "Date", id: "date" },
+    { label: "Titre", id: "title" },
+];
 
 function generateDropdown(sortOptions) {
     const dropdownDOM = `
@@ -21,7 +21,7 @@ function generateDropdown(sortOptions) {
         <button class="sortby-select__option button" role="listbox" aria-labelledby="dropdown" data-id="${sortOptions[2].id}">
             ${sortOptions[2].label}
         </button>
-    </div>`
+    </div>`;
     return dropdownDOM;
 }
 
@@ -37,7 +37,7 @@ function generateOptionForDropdown(optionValue) {
 }
 
 export function dropDown(photographerCard, photographerMedia) {
-    document.querySelector('.sortby > div').innerHTML = generateDropdown(sortOptions);
+    document.querySelector(".sortby > div").innerHTML = generateDropdown(sortOptions);
 
     const firstButton = document.querySelector(".sortby-select__button");
     const panel = document.querySelector(".sortby-select-panel");

@@ -1,9 +1,10 @@
 import { extensionFactory } from "../utils/extension.js";
+import { currentFocusedElement, focusTrappedInsideModal } from "./focusInsideModal.js";
 
 export function modalLightBox(photographerMedia) {
-	const getLightbox = document.getElementById("lightbox-modal");
-    const AllMedia = document.querySelectorAll(".photograph-galery-content__media")
-    const lightBox = document.querySelector('.lightbox');
+    const getLightbox = document.getElementById("lightbox-modal");
+    const AllMedia = document.querySelectorAll(".photograph-galery-content__media");
+    const lightBox = document.querySelector(".lightbox");
     
     let pictureId;
     AllMedia.forEach(media => {
@@ -20,7 +21,7 @@ export function modalLightBox(photographerMedia) {
 
     function openLightBox(media) {
         getLightbox.classList.add("lightbox-open");
-        getLightbox.setAttribute('aria-hidden', 'true');
+        getLightbox.setAttribute("aria-hidden", "true");
         pictureId = media.parentElement.getAttribute("data-id");
 
         const picture = findPictureClicked(photographerMedia, pictureId);
@@ -29,12 +30,13 @@ export function modalLightBox(photographerMedia) {
 
         handleNavigation(pictureIndex);     
         closeLightBox();
+        
     }
 
     function handleNavigation(initialIndex) {
-        const rightArrow = document.querySelector('.js-lightbox-right__btn');
-        const leftArrow = document.querySelector('.js-lightbox-left__btn');
-        let i = initialIndex
+        const rightArrow = document.querySelector(".js-lightbox-right__btn");
+        const leftArrow = document.querySelector(".js-lightbox-left__btn");
+        let i = initialIndex;
 
         rightArrow.addEventListener("click", function () {
             i === photographerMedia.length - 1 ? i = 0 : i += 1;
@@ -63,13 +65,13 @@ export function modalLightBox(photographerMedia) {
                 i === photographerMedia.length - 1 ? i = 0 : i += 1;
                 const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
                 updatePictureInLightbox(picture);
-            };
+            }
 
             if (event.key === "ArrowLeft") {
                 i === 0 ? i = photographerMedia.length - 1 : i -= 1;
                 const picture = findPictureClicked(photographerMedia, photographerMedia[i].id);
                 updatePictureInLightbox(picture);
-            };
+            }
         });
     }
 
@@ -77,13 +79,13 @@ export function modalLightBox(photographerMedia) {
         const closeBtn = document.querySelector(".js-lightbox-close__btn");
         closeBtn.addEventListener("click", function () {
             getLightbox.classList.remove("lightbox-open");
-            getLightbox.setAttribute('aria-hidden', 'false');
+            getLightbox.setAttribute("aria-hidden", "false");
         });
 
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape") {
                 getLightbox.classList.remove("lightbox-open");
-            };
+            }
         });
     }
 
@@ -113,14 +115,14 @@ export function modalLightBox(photographerMedia) {
                 <i tabindex="0" role="button" alt="bouton pour passer à l'image suivante" aria-hidden="true" class="fas fa-chevron-right js-lightbox-right__btn"></i>
             </section>
             <footer class="lightbox-footer">
-                <p tabindex="0" arialabel="Titre de cette publication" class="lightbox-footer__title">${picture.title}</p>
+                <p aria-label="Titre de cette publication" class="lightbox-footer__title">${picture.title}</p>
             </footer>
-        `
-        return media
+        `;
+        return media;
     }
 
     function updatePictureInLightbox(picture) {
-        const pictureContainer = document.querySelector('#lightbox-picture')
-        pictureContainer.innerHTML = extensionFactory(picture.path, picture.title, "lightbox-main__img")
+        const pictureContainer = document.querySelector("#lightbox-picture");
+        pictureContainer.innerHTML = extensionFactory(picture.path, picture.title, "lightbox-main__img");
     }
-};
+}
