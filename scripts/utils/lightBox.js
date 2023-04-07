@@ -30,7 +30,7 @@ export function modalLightBox(photographerMedia) {
 
         handleNavigation(pictureIndex);     
         closeLightBox();
-        
+        focusTrappedInsideModal("#lightbox-modal");
     }
 
     function handleNavigation(initialIndex) {
@@ -80,11 +80,13 @@ export function modalLightBox(photographerMedia) {
         closeBtn.addEventListener("click", function () {
             getLightbox.classList.remove("lightbox-open");
             getLightbox.setAttribute("aria-hidden", "false");
+            currentFocusedElement.focus();
         });
 
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape") {
                 getLightbox.classList.remove("lightbox-open");
+                currentFocusedElement.focus();
             }
         });
     }

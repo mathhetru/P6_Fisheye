@@ -46,30 +46,32 @@
                 </section>
             </main>
             
-            <section tabindex="2" id="contact-modal" aria-hidden="true" class="contact-close"  role="dialog" aria-describedby="modalContactTitle">
+            <section tabindex="1" id="contact-modal" aria-hidden="true" class="contact-close"  role="dialog" aria-describedby="modalContactTitle">
                 <div class="modal">
                     <header aria-label="header du formulaire" class="modal-header">
                         <h2 id="modalContactTitle" class="modal-header__title"></h2>
-                        <img tabindex="2" role="button" class="modal-header__img js-modal-close__btn" src="assets/icons/close.svg" alt="bouton fermer le formulaire"/>
+                        <button tabindex="1" role="button" class="modal-header__button js-modal-close__btn" alt="bouton fermer le formulaire">
+                            <img class="modal-header__img" src="assets/icons/close.svg" />
+                        </button>
                     </header>
                     <form id="form" class="modal-form">
                         <div class="modal-block">
                             <label class="modal-label__text" for="firstname">Prénom</label>
-                            <input tabindex="2" class="modal-input first" id="firstname" type="text" minlength="2">
+                            <input tabindex="1" class="modal-input first" id="firstname" type="text" minlength="2">
                         </div>
                         <div class="modal-block">
                             <label class="modal-label__text" for="lastname">Nom</label>
-                            <input tabindex="2" class="modal-input last" id="lastname" type="text" minlength="2">
+                            <input tabindex="1" class="modal-input last" id="lastname" type="text" minlength="2">
                         </div>
                         <div class="modal-block">
                             <label class="modal-label__text" for="email">Email</label>
-                            <input tabindex="2" class="modal-input email" id="email" type="email" minlength="2">
+                            <input tabindex="1" class="modal-input email" id="email" type="email" minlength="2">
                         </div>
                         <div class="modal-block">
                             <label class="modal-label__text" for="message">Votre message</label>
-                            <textarea tabindex="2" class="modal-textarea msg" id="message"></textarea>
+                            <textarea tabindex="1" class="modal-textarea msg" id="message"></textarea>
                         </div>
-                        <button tabindex="2" class="modal-send__btn" type="submit">Envoyer</button>
+                        <button tabindex="1" class="modal-send__btn" type="submit">Envoyer</button>
                     </form>
                 </div>
             </section>
