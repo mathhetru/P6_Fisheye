@@ -1,5 +1,22 @@
 {
   "devDependencies": {
     "eslint": "^8.37.0"
-  }
+  },
+  "name": "p6_fisheye",
+  "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint scripts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathhetru/P6_Fisheye.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mathhetru/P6_Fisheye/issues"
+  },
+  "homepage": "https://github.com/mathhetru/P6_Fisheye#readme"
 }
