@@ -1,4 +1,4 @@
-import { generateGallery } from "../factories/photographer.js";
+import { generateGalery } from "../factories/photographer.js";
 import { modalLightBox } from "../utils/lightBox.js";
 import { showPriceAndLikes } from "../utils/priceAndLikesBlock.js";
 
@@ -72,7 +72,7 @@ export function dropDown(photographerCard, photographerMedia) {
                 photographerMedia.sort(sortByTitle);
                 dropDown(photographerCard, photographerMedia);
             } 
-            generateGallery(photographerMedia, photographerCard);
+            generateGalery(photographerMedia, photographerCard);
             showPriceAndLikes(photographerCard, photographerMedia);
             modalLightBox(photographerMedia);
         });

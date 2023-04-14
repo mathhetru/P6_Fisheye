@@ -1,5 +1,9 @@
 import { currentFocusedElement, focusTrappedInsideModal } from "./focusInsideModal.js";
 
+/**
+ * Affiche la modal contact et ses propriétés
+ * @param {Object} photographer 
+ */
 export function modalContact(photographer) {
     const getModalContact = document.getElementById("contact-modal");
     const modalBtn = document.querySelector(".contact__btn");
@@ -28,6 +32,7 @@ export function modalContact(photographer) {
         }
     });
 
+    // Ajoute le nom du photographe dans le titre de la modal
     const modalTitle = document.querySelector(".modal-header__title");
     modalTitle.innerHTML = `Contactez-moi </br> ${photographer.name}`;
     
@@ -37,7 +42,7 @@ export function modalContact(photographer) {
     const inputEmail = document.querySelector(".email");
     const inputMsg = document.querySelector(".msg");
     
-
+    // Affiche le contenu des inputs dans un console.log
     inputFirst.addEventListener("change", function () {
         const valueFirst = inputFirst.value;
         console.log(valueFirst);
@@ -64,8 +69,4 @@ export function modalContact(photographer) {
         getModalContact.classList.add("contact-close");
         form.reset();
     });
-
-    
-
-    
 }

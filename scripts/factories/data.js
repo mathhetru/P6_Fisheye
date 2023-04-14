@@ -1,3 +1,7 @@
+/**
+ * va chercher le .json avec le tableau de photographes
+ * @returns {Array<Object>}
+ */
 export async function getData() {
     const requestURL = "/data/photographers.json";
     return fetch(requestURL)

@@ -10,8 +10,6 @@ export function focusTrappedInsideModal(container) {
     // const middleFocusableElement = getModal.querySelectorAll(focusableElements)[1]; 
     const lastFocusableElement = focusableContent[focusableContent.length - 1]; 
 
-    console.log(firstFocusableElement);
-    
     document.addEventListener("keydown", function(e) {
         let isTabPressed = e.key === "Tab";
 

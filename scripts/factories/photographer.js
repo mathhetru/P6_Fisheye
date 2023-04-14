@@ -1,17 +1,34 @@
 import { extensionFactory } from "../utils/extension.js";
 
+/**
+ * genère un {Object} avec tous les élements nécessaires du photographe et le retourne avec les fonctions DOM 
+ * @param {Object} photographer 
+ * @returns {Object | undefined}
+ */
 export function photographerFactory(photographer) {
     const { name, id, city, country, tagline, price, portrait } = photographer;
     const picture = `img/photographers_ID/${portrait}`;
     return { name, id, city, country, tagline, price, picture, indexArticleDOM, singlePhotographDOM };
 }
 
+
+/**
+ * genère un {Object} avec tous les élements nécessaires à la galerie de média et le retourne avec la fonction DOM 
+ * @param {Object} media 
+ * @returns {Object | undefined}
+ */
 function galeryFactory(media) {
     const { date, id, likes, photographeId, price, title, path } = media;
     return { date, id, likes, mediaPath: path, photographeId, price, title, generateMediaDOM };
 }
 
-export function generateGallery(mediasList) {
+
+/**
+ * genère la galerie de média, le retourne avec la fonction DOM, et join le DOM de chaque média dans le selecteur HTML
+ * @param {Object} photographer 
+ * @returns {Object | undefined}
+ */
+export function generateGalery(mediasList) {
     const mediasListDOM = mediasList.map((oneElement) => {
         const galeriePanel = galeryFactory(oneElement);
 
@@ -28,6 +45,11 @@ export function generateGallery(mediasList) {
     document.querySelector(".photograph-galery").innerHTML = mediasListDOM.join("");
 }
 
+
+/**
+ * genère chaque carte de photographe, la retourne avec la fonction DOM, et join le DOM de chaque photographe dans le selecteur HTML
+ * @param {Object} photographers 
+ */
 export function generatePhotographers(photographers) {
     const photographersListDOM = photographers.map((onePhotographer) => {
         const photographerCard = photographerFactory(onePhotographer);
@@ -45,6 +67,18 @@ export function generatePhotographers(photographers) {
     document.querySelector(".photographer-section").innerHTML = photographersListDOM.join("");
 }
 
+
+/**
+ * retourne le DOM d'un article par photographe sur la page index
+ * @param {string} name 
+ * @param {number} id 
+ * @param {string} city 
+ * @param {string} country 
+ * @param {string} tagline 
+ * @param {number} price 
+ * @param {string} picture 
+ * @returns {string}
+ */
 function indexArticleDOM(name, id, city, country, tagline, price, picture) {
     const articleDOM = `
     <article class="card-article" data-photographer-id="${id}">
@@ -61,6 +95,12 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
     return articleDOM;
 }
 
+
+/**
+ * retourne le DOM du header sur la page photographe
+ * @param {Object} param0 
+ * @returns {string}
+ */
 function singlePhotographDOM({ name, city, country, tagline, picture }) {
     const photographersHeaderDOM = `
         <div class="photograph-header-infos">
@@ -73,6 +113,12 @@ function singlePhotographDOM({ name, city, country, tagline, picture }) {
     return photographersHeaderDOM;
 }
 
+
+/**
+ * retourne le DOM pour chaque média sur la page photographe
+ * @param {Object} param0 
+ * @returns {string}
+ */
 function generateMediaDOM({ id, likes, mediaPath, title }) {
     const media = `
         <article class="photograph-galery-panel" data-id="${id}">
