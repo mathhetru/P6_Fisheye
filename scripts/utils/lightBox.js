@@ -108,17 +108,17 @@ export function modalLightBox(photographerMedia) {
         const media = `
             <header class="lightbox-header">
                 <span tabindex="0" role="button" class="js-lightbox-close__btn lightbox-header-button-close">
-                    <img alt="bouton fermer la lightbox" class="lightbox-header__img" src="assets/icons/close-red.svg"/>
+                    <img alt="bouton fermer la lightbox" class="lightbox-header__img" src="assets/icons/close-red.svg">
                 </button>
             </header>
             <section class="lightbox-main">
-                <button class="js-lightbox-left__btn lightbox-button" tabindex="0" role="button" alt="bouton pour passer à l'image précédente" aria-hidden="true">
+                <button class="js-lightbox-left__btn lightbox-button" tabindex="0" alt="bouton pour passer à l'image précédente" aria-hidden="true">
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 <div id="lightbox-picture">
                     ${extensionFactory(picture.path, picture.title, "lightbox-main__img")}
                 </div>
-                <button class="js-lightbox-right__btn lightbox-button" tabindex="0" role="button" alt="bouton pour passer à l'image suivante" aria-hidden="true">
+                <button class="js-lightbox-right__btn lightbox-button" tabindex="0" alt="bouton pour passer à l'image suivante" aria-hidden="true">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </section>
