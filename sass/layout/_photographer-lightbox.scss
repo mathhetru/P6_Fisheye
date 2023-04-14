@@ -13,7 +13,7 @@
 .lightbox-open{
     display: block;
 }
-.lightbox {
+.lightbox{
     border-radius: 5px;
     background-color: $white;
     max-width: 70vw;
@@ -27,18 +27,27 @@
     transform: translateY(5%);
     animation-name: modalopen;
     animation-duration: 0.8s;
-    &-header {
+    &-header{
         display: flex;
         justify-content: flex-end;
         align-items: flex-start;
         width: 100%;
     }
-    &-header__img {
-        position: absolute;
+    &-header__img{
         height: 30px;
         width: 30px;
         margin: 0 30px;
+    }
+    &-header-button-close{
+        position: absolute;
         cursor: pointer;
+        border: none;
+        background-color: transparent;
+    }
+    &-button{
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
     }
     &-main{
         display: flex;
@@ -53,7 +62,7 @@
         }
     }
     &-main__img{
-        max-width: 95%;
+        max-width: 100%;
         max-height: 80vh;
         object-fit: cover;
         border-radius: 5px;

@@ -128,9 +128,12 @@
             font-weight: $w-medium;
             font-size: 20px;
         }
-        .fa-heart{
-            cursor: pointer;
-        }
+    }
+    &-heart{
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        color: $red;
     }
 }
 

@@ -81,7 +81,9 @@ function generateMediaDOM({ id, likes, mediaPath, title }) {
                 <h2 class="photograph-galery-content__title">${title}</h2>
                 <div class="photograph-galery-content-hearts">
                     <p aria-label="nombre de likes pour cette publication" class="photograph-galery-content-hearts__text">${likes}</p>
-                    <i aria-label="bouton pour liker la publication ${title}" aria-pressed="false" tabindex="0" class="fas fa-heart"></i>
+                    <button aria-label="bouton pour liker la publication ${title}" aria-pressed="false" tabindex="0"  class="js-button-likes photograph-galery-heart">
+                        <i class="fas fa-heart"></i>
+                    </button>
                 </div>
             </div>
         </div>

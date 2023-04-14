@@ -4,7 +4,7 @@ export function showPriceAndLikes(photographer, photographerMedia) {
     hearts.forEach(heart => {
         const text = heart.querySelector(".photograph-galery-content-hearts__text");
         const likes = Number(text.textContent);
-        const icon = heart.querySelector(".fa-heart");
+        const icon = heart.querySelector(".js-button-likes");
         const onClick = () => {
             text.textContent = likes + 1;
             icon.setAttribute("aria-pressed", "true");

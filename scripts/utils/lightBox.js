@@ -107,14 +107,20 @@ export function modalLightBox(photographerMedia) {
     function generateElementInLightBox(picture) {
         const media = `
             <header class="lightbox-header">
-                <img tabindex="0" role="button" alt="bouton fermer la lightbox" class="lightbox-header__img js-lightbox-close__btn" src="assets/icons/close-red.svg"/>
+                <button tabindex="0" role="button" alt="bouton fermer la lightbox" class="js-lightbox-close__btn lightbox-header-button-close">
+                    <img class="lightbox-header__img" src="assets/icons/close-red.svg"/>
+                </button>
             </header>
             <section class="lightbox-main">
-                <i tabindex="0" role="button" alt="bouton pour passer à l'image précédente" aria-hidden="true" class="fas fa-chevron-left js-lightbox-left__btn"></i>
+                <button class="js-lightbox-left__btn lightbox-button" tabindex="0" role="button" alt="bouton pour passer à l'image précédente" aria-hidden="true">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
                 <div id="lightbox-picture">
                     ${extensionFactory(picture.path, picture.title, "lightbox-main__img")}
                 </div>
-                <i tabindex="0" role="button" alt="bouton pour passer à l'image suivante" aria-hidden="true" class="fas fa-chevron-right js-lightbox-right__btn"></i>
+                <button class="js-lightbox-right__btn lightbox-button" tabindex="0" role="button" alt="bouton pour passer à l'image suivante" aria-hidden="true">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </section>
             <footer class="lightbox-footer">
                 <p aria-label="Titre de cette publication" class="lightbox-footer__title">${picture.title}</p>

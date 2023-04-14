@@ -1,6 +1,6 @@
 #contact-modal {
     position: fixed;
-    z-index: 1;
+    z-index: 15;
     left: 0;
     top: 0;
     height: 100%;
@@ -35,8 +35,12 @@
         width: 100%;
     }
     &-header__img {
-        cursor: pointer;
         margin-top: 5px;
+    }
+    &-header__button{
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
     }
     &-header__title {
         color: $black;
