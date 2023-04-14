@@ -107,8 +107,8 @@ export function modalLightBox(photographerMedia) {
     function generateElementInLightBox(picture) {
         const media = `
             <header class="lightbox-header">
-                <span tabindex="0" role="button" alt="bouton fermer la lightbox" class="js-lightbox-close__btn lightbox-header-button-close">
-                    <img class="lightbox-header__img" src="assets/icons/close-red.svg"/>
+                <span tabindex="0" role="button" class="js-lightbox-close__btn lightbox-header-button-close">
+                    <img alt="bouton fermer la lightbox" class="lightbox-header__img" src="assets/icons/close-red.svg"/>
                 </button>
             </header>
             <section class="lightbox-main">

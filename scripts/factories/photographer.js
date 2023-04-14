@@ -75,7 +75,7 @@ function singlePhotographDOM({ name, city, country, tagline, picture }) {
 
 function generateMediaDOM({ id, likes, mediaPath, title }) {
     const media = `
-        <div class="photograph-galery-panel" data-id="${id}">
+        <article class="photograph-galery-panel" data-id="${id}">
             ${extensionFactory(mediaPath, title, "photograph-galery-content__media")}
             <div class="photograph-galery-content">
                 <h2 class="photograph-galery-content__title">${title}</h2>
@@ -86,7 +86,7 @@ function generateMediaDOM({ id, likes, mediaPath, title }) {
                     </button>
                 </div>
             </div>
-        </div>
+        </article>
     `;
     return media;
 }

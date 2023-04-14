@@ -1,7 +1,4 @@
-import {
-    generateGallery,
-    photographerFactory,
-} from "../factories/photographer.js";
+import { generateGallery, photographerFactory } from "../factories/photographer.js";
 import { getData } from "../factories/data.js";
 import { modalContact } from "../utils/contactForm.js";
 import { showPriceAndLikes } from "../utils/priceAndLikesBlock.js";
@@ -37,6 +34,23 @@ async function displayOnePhotographer(photographer, photographerMedia) {
     modalLightBox(photographerMedia);
 }
 
+/**
+ * @typedef Photographer
+*	@property {string} name
+*	@property {number} id
+*	@property {string} city
+*	@property {string} country
+*	@property {string} tagline
+*	@property {number} price
+*	@property {string} portrait
+ */
+
+/**
+ * 
+ * @param {Array<Photographer>} photographersList 
+ * @param {string | number} photographerId 
+ * @returns {Photographer | undefined}
+ */
 function findPhotographerById(photographersList, photographerId) {
     return photographersList.find(
         (element) => element.id == photographerId
