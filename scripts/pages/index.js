@@ -2,7 +2,7 @@ import { generatePhotographers } from "../factories/photographer.js";
 import { getData } from "../factories/data.js";
 
 /**
- * genère et affiche la page index
+ * Genère et affiche la page index
  * @param {Object} data 
  */
 async function displayIndexPhotographers(data) {
@@ -11,7 +11,7 @@ async function displayIndexPhotographers(data) {
 
 
 /**
- * initialize en asynchrone la page index
+ * Initialize en asynchrone la page index
  */
 async function init() {
     const photographers = await getData();

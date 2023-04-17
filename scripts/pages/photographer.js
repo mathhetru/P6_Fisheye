@@ -77,7 +77,7 @@ function findPhotographerMedias(mediaList, photographer) {
 
 
 /**
- * initialize en asynchrone la page du photographe
+ * Initialize en asynchrone la page du photographe
  */
 async function init() {
     const data = await getData();

@@ -1,5 +1,9 @@
 export let currentFocusedElement = null;
 
+/**
+ * Navigation clavier : capture le focus lors de l'affichage des modals contacts et lightbox
+ * @param {string} container 
+ */
 export function focusTrappedInsideModal(container) {
     currentFocusedElement = document.activeElement;
     const focusableElements = "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])";
@@ -7,7 +11,6 @@ export function focusTrappedInsideModal(container) {
 
     const firstFocusableElement = getModal.querySelectorAll(focusableElements)[0]; 
     const focusableContent = getModal.querySelectorAll(focusableElements);
-    // const middleFocusableElement = getModal.querySelectorAll(focusableElements)[1]; 
     const lastFocusableElement = focusableContent[focusableContent.length - 1]; 
 
     document.addEventListener("keydown", function(e) {
@@ -29,6 +32,5 @@ export function focusTrappedInsideModal(container) {
             }
         }
     });
-
     firstFocusableElement.focus();
 }

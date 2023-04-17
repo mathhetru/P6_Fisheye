@@ -1,3 +1,9 @@
+/**
+ * Incrémente les likes sur les médias et sur le compteur de likes total
+ * Affiche l'encart orange de like et de prix de chaque photographe en bas de page
+ * @param {string} photographer 
+ * @param {string} photographerMedia 
+ */
 export function showPriceAndLikes(photographer, photographerMedia) {
     const hearts = document.querySelectorAll(".photograph-galery-content-hearts");
 

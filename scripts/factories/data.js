@@ -1,5 +1,5 @@
 /**
- * va chercher le .json avec le tableau de photographes
+ * Retourne le .json avec le tableau de photographes
  * @returns {Array<Object>}
  */
 export async function getData() {

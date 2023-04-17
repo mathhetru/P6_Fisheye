@@ -1,3 +1,10 @@
+/**
+ * Prend l'extension du chemin media, si jpg > retourne la balise <img>, si mp4 > retourne la balise <video>
+ * @param {string} mediaPath 
+ * @param {string} title 
+ * @param {string} className 
+ * @returns {string}
+ */
 export function extensionFactory(mediaPath, title, className) {
     let file = mediaPath.split(".");
     let extension = file[1];

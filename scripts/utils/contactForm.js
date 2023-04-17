@@ -63,6 +63,7 @@ export function modalContact(photographer) {
         console.log(valueFirst);
     });
     
+    // Ferme la modal et vide les champs du formulaire
     form.addEventListener("submit", function (e) {
         e.preventDefault();
         getModalContact.classList.remove("contact-open");

@@ -1,7 +1,7 @@
 import { extensionFactory } from "../utils/extension.js";
 
 /**
- * genère un {Object} avec tous les élements nécessaires du photographe et le retourne avec les fonctions DOM 
+ * Genère un {Object} avec tous les élements nécessaires du photographe et le retourne avec les fonctions DOM 
  * @param {Object} photographer 
  * @returns {Object | undefined}
  */
@@ -13,7 +13,7 @@ export function photographerFactory(photographer) {
 
 
 /**
- * genère un {Object} avec tous les élements nécessaires à la galerie de média et le retourne avec la fonction DOM 
+ * Genère un {Object} avec tous les élements nécessaires à la galerie de média et le retourne avec la fonction DOM 
  * @param {Object} media 
  * @returns {Object | undefined}
  */
@@ -24,7 +24,7 @@ function galeryFactory(media) {
 
 
 /**
- * genère la galerie de média, le retourne avec la fonction DOM, et join le DOM de chaque média dans le selecteur HTML
+ * Genère la galerie de média, le retourne avec la fonction DOM, et join le DOM de chaque média dans le selecteur HTML
  * @param {Object} photographer 
  * @returns {Object | undefined}
  */
@@ -47,7 +47,7 @@ export function generateGalery(mediasList) {
 
 
 /**
- * genère chaque carte de photographe, la retourne avec la fonction DOM, et join le DOM de chaque photographe dans le selecteur HTML
+ * Genère chaque carte de photographe, la retourne avec la fonction DOM, et join le DOM de chaque photographe dans le selecteur HTML
  * @param {Object} photographers 
  */
 export function generatePhotographers(photographers) {
@@ -69,7 +69,7 @@ export function generatePhotographers(photographers) {
 
 
 /**
- * retourne le DOM d'un article par photographe sur la page index
+ * Retourne le DOM d'un article par photographe sur la page index
  * @param {string} name 
  * @param {number} id 
  * @param {string} city 
@@ -97,7 +97,7 @@ function indexArticleDOM(name, id, city, country, tagline, price, picture) {
 
 
 /**
- * retourne le DOM du header sur la page photographe
+ * Retourne le DOM du header sur la page photographe
  * @param {Object} param0 
  * @returns {string}
  */
@@ -115,7 +115,7 @@ function singlePhotographDOM({ name, city, country, tagline, picture }) {
 
 
 /**
- * retourne le DOM pour chaque média sur la page photographe
+ * Retourne le DOM pour chaque média sur la page photographe
  * @param {Object} param0 
  * @returns {string}
  */

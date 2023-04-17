@@ -2,12 +2,21 @@ import { generateGalery } from "../factories/photographer.js";
 import { modalLightBox } from "../utils/lightBox.js";
 import { showPriceAndLikes } from "../utils/priceAndLikesBlock.js";
 
+/**
+ * Création d'un array pour l'encart "trier par"
+ */
 let sortOptions = [
     { label: "Popularité", id: "popularity" },
     { label: "Date", id: "date" },
     { label: "Titre", id: "title" },
 ];
 
+
+/**
+ * Retourne le DOM pour l'encart "trier par"
+ * @param {Array<Object>} sortOptions 
+ * @returns {string}
+ */
 function generateDropdown(sortOptions) {
     const dropdownDOM = `
     <button class="sortby-select__button" role="button" aria-haspopup="listbox" data-id="${sortOptions[0].id}">
@@ -25,6 +34,11 @@ function generateDropdown(sortOptions) {
     return dropdownDOM;
 }
 
+
+/**
+ * Recherche l'option cliqué et génère les autres options en fonction
+ * @param {string} optionValue 
+ */
 function generateOptionForDropdown(optionValue) {
     /*const clickedOptionIndex = sortOptions.findIndex(o => o.id === optionValue);
     const clickedActualOption = sortOptions[clickedOptionIndex];
@@ -36,6 +50,12 @@ function generateOptionForDropdown(optionValue) {
     sortOptions = [clickedOption, ...otherOptions];
 }
 
+
+/**
+ * Génére le DOM dans la balise HTML div, quand un bouton est cliqué, implémente les autres en fonction et trie selon le bouton cliqué
+ * @param {string} photographerCard 
+ * @param {string} photographerMedia 
+ */
 export function dropDown(photographerCard, photographerMedia) {
     document.querySelector(".sortby > div").innerHTML = generateDropdown(sortOptions);
 
@@ -55,7 +75,6 @@ export function dropDown(photographerCard, photographerMedia) {
 
     const allButtons = document.querySelectorAll(".button");
 
-    // let optionValue;
     allButtons.forEach((option) => {
         option.addEventListener("click", function () {
             const optionValue = option.getAttribute("data-id");
@@ -79,6 +98,13 @@ export function dropDown(photographerCard, photographerMedia) {
     });
 }
 
+
+/**
+ * Trie par popularité selon le nombre de likes
+ * @param {number} a 
+ * @param {number} b 
+ * @returns 
+ */
 export function sortByPopularity(a, b) {
     if (a.likes > b.likes) {
         return -1;
@@ -89,6 +115,13 @@ export function sortByPopularity(a, b) {
     return 0;
 }
 
+
+/**
+ * Trie par le plus récent selon la date
+ * @param {string} a 
+ * @param {string} b 
+ * @returns 
+ */
 function sortByDate(a, b) {
     if (a.date > b.date) {
         return -1;
@@ -99,6 +132,13 @@ function sortByDate(a, b) {
     return 0;
 }
 
+
+/**
+ * Trie par ordre alphabet selon le titre
+ * @param {string} a 
+ * @param {string} b 
+ * @returns 
+ */
 function sortByTitle(a, b) {
     if (a.title > b.title) {
         return 1;
