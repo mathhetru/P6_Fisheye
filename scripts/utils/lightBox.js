@@ -182,6 +182,6 @@ export function modalLightBox(photographerMedia) {
      */
     function updatePictureInLightbox(picture) {
         const pictureContainer = document.querySelector("#lightbox-picture");
-        pictureContainer.innerHTML = extensionFactory(picture.path, picture.title, "lightbox-main__img");
+        pictureContainer.innerHTML = extensionFactory(picture.path, picture.title, "lightbox-main__img", { autoplayVideo: true });
     }
 }
