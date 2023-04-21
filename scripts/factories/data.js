@@ -1,6 +1,6 @@
 /**
  * Retourne le .json avec le tableau de photographes
- * @returns {Array<Object>}
+ * @returns {Promise<Array<Object>>}
  */
 export async function getData() {
     const requestURL = "/data/photographers.json";

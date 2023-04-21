@@ -40,11 +40,6 @@ function generateDropdown(sortOptions) {
  * @param {string} optionValue 
  */
 function generateOptionForDropdown(optionValue) {
-    /*const clickedOptionIndex = sortOptions.findIndex(o => o.id === optionValue);
-    const clickedActualOption = sortOptions[clickedOptionIndex];
-    const firstOption = sortOptions[0];
-    sortOptions.splice(0, 1, clickedActualOption);
-    sortOptions.splice(clickedOptionIndex, 1, firstOption);*/
     const clickedOption = sortOptions.find(o => o.id === optionValue);
     const otherOptions = sortOptions.filter(o => o.id !== optionValue);
     sortOptions = [clickedOption, ...otherOptions];

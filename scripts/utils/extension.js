@@ -5,7 +5,7 @@
  * @param {string} className 
  * @returns {string}
  */
-export function extensionFactory(mediaPath, title, className) {
+export function extensionFactory(mediaPath, title, className, options = { autoplayVideo: false }) {
     let file = mediaPath.split(".");
     let extension = file[1];
     switch (extension) {
@@ -13,7 +13,7 @@ export function extensionFactory(mediaPath, title, className) {
     case "jpeg":
         return `<img tabindex="0" role="link" class=${className} src="${mediaPath}" alt="photographie nommée ${title}">`;
     case "mp4":
-        return `<video tabindex="0" role="link" class=${className} alt="Vidéo nommée ${title}" autoplay loop>
+        return `<video tabindex="0" role="link" class=${className} alt="Vidéo nommée ${title}" ${options?.autoplayVideo && "autoplay loop"}>
             <source src="${mediaPath}" type="video/mp4">
         </video>`;
     }

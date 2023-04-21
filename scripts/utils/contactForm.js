@@ -43,29 +43,15 @@ export function modalContact(photographer) {
     const inputMsg = document.querySelector(".msg");
     
     // Affiche le contenu des inputs dans un console.log
-    inputFirst.addEventListener("change", function () {
-        const valueFirst = inputFirst.value;
-        console.log(valueFirst);
-    });
-
-    inputLast.addEventListener("change", function () {
-        const valueFirst = inputLast.value;
-        console.log(valueFirst);
-    });
-
-    inputEmail.addEventListener("change", function () {
-        const valueFirst = inputEmail.value;
-        console.log(valueFirst);
-    });
-
-    inputMsg.addEventListener("change", function () {
-        const valueFirst = inputMsg.value;
-        console.log(valueFirst);
-    });
-    
     // Ferme la modal et vide les champs du formulaire
     form.addEventListener("submit", function (e) {
         e.preventDefault();
+        console.log({
+            firstName: inputFirst.value,
+            lastName: inputLast.value,
+            Email: inputEmail.value,
+            Message: inputMsg.value
+        });
         getModalContact.classList.remove("contact-open");
         getModalContact.classList.add("contact-close");
         form.reset();
