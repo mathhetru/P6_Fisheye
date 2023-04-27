@@ -158,13 +158,13 @@ export function modalLightBox(photographerMedia) {
                 </button>
             </header>
             <section class="lightbox-main">
-                <button class="js-lightbox-left__btn lightbox-button" tabindex="0" alt="bouton pour passer à l'image précédente" aria-hidden="true">
+                <button class="js-lightbox-left__btn lightbox-button" tabindex="0" alt="bouton pour passer à l'image précédente">
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 <div id="lightbox-picture">
                     ${extensionFactory(picture.path, picture.title, "lightbox-main__img", { autoplayVideo: true })}
                 </div>
-                <button class="js-lightbox-right__btn lightbox-button" tabindex="0" alt="bouton pour passer à l'image suivante" aria-hidden="true">
+                <button class="js-lightbox-right__btn lightbox-button" tabindex="0" alt="bouton pour passer à l'image suivante">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </section>

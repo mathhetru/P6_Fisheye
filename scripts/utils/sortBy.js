@@ -62,8 +62,10 @@ export function dropDown(photographerCard, photographerMedia) {
     firstButton.addEventListener("click", function () {
         result = panel.classList.toggle("flex");
         if (result) {
+            firstButton.setAttribute("aria-expanded", "true");
             icone.classList.add("rotate");
         } else {
+            firstButton.setAttribute("aria-expanded", "false");
             icone.classList.remove("rotate");
         }
     });
